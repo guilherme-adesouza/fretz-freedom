@@ -1,0 +1,51 @@
+{
+  "name": "fretz-freedom-backend",
+  "version": "1.0.0",
+  "description": "Back-end app for Fretz & Freedom",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilherme-adesouza/fretz-freedom.git"
+  },
+  "keywords": [
+    "vehicle",
+    "inspections",
+    "car",
+    "back-end",
+    "mobile",
+    "app"
+  ],
+  "author": "guilherme-adesouza, aidnasc, VitinGroot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilherme-adesouza/fretz-freedom/issues"
+  },
+  "homepage": "https://github.com/guilherme-adesouza/fretz-freedom#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "^1.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.4",
+    "pg": "^7.14.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
