@@ -1,12 +1,12 @@
-const Config = require('../utils/config');
+const { DATABASE } = require('../utils/config');
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
-    user: Config.DATABASE.USER,
-    host: Config.DATABASE.HOST,
-    database: Config.DATABASE.NAME,
-    password: Config.DATABASE.PASSWORD,
-    port: Config.DATABASE.PORT,
+    user: DATABASE.USER,
+    host: DATABASE.HOST,
+    database: DATABASE.NAME,
+    password: DATABASE.PASSWORD,
+    port: DATABASE.PORT,
 });
 
 async function executeQuery(query) {

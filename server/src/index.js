@@ -1,8 +1,10 @@
 const server = require('./server');
-const Config = require('./utils/config');
+const { APP } = require('./utils/config');
+const executeMigrations = require('./migrations');
 
-const port = Config.APP.PORT;
-server.listen(port, () => {
-    console.info(`Listening on port ${port}...`);
-    console.info(`Fretz & Freedom Server started!`)
+executeMigrations(() => {
+    server.listen(APP.PORT, () => {
+        console.info(`Listening on port ${APP.PORT}...`);
+        console.info(`Fretz & Freedom Server started!`)
+    });
 });

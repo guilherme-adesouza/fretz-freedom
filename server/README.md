@@ -15,12 +15,12 @@
 #### Available endpoints
 
 - [GET] `/` - Hello world from application
-- [GET] `/auth/login` - Login   
+- [GET] `/api/auth/login` - Login   
     Request body: `{email, password}`
-- [GET] `/auth/logout` - Logout
+- [GET] `/api/auth/logout` - Logout
 
 ##### Helper Endpoint
-- [GET] `/user/create` - Create a default admin user
+- [GET] `/api/user/create` - Create a default admin user
 
 ##### CRUD endpoints
 
