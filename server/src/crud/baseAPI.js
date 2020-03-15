@@ -10,7 +10,6 @@ function buildBaseAPI(controller, router) {
     });
 
     router.get('/', (req, res) => {
-        console.log(controller);
         controller.getAll(req, res);
     });
 

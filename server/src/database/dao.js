@@ -2,57 +2,69 @@ const db = require('./database');
 
 class DAO {
 
-    static selectOne({table = '', fields = ['*'], params = {}, additionalQuery = ''}, cb) {
+    static async selectOne({table = '', fields = ['*'], params = {}, additionalQuery = ''}) {
         const query = {
             text: `SELECT ${fields.join(', ')} FROM ${table} ${getParams(params)} ${additionalQuery}`,
             values: Object.values(params)
         };
-        db.executeQuery(query, (result) => cb(result && result[0]));
+        const result =  await db.executeQuery(query);
+        return result && result[0];
     }
 
-    static selectMany({table = '', fields = ['*'], join = "", params = {}, additionalQuery = ''}, cb) {
+    static async selectMany({table = '', fields = ['*'], join = "", params = {}, additionalQuery = ''}) {
         const query = {
             text: `SELECT ${fields.join(', ')} FROM ${table} ${join} ${getParams(params)} ${additionalQuery}`,
             values: Object.values(params)
         };
-        db.executeQuery(query, (result) => cb(result));
+        return await db.executeQuery(query);
     }
 
-    static insert({table = '', values = {}}, cb) {
+    static async insert({table = '', values = {}}) {
         const query = {
             text: `INSERT INTO ${table} ${join(getFields(values))} VALUES ${getInsertValues(values)} RETURNING id`,
             values: Object.values(values)
         };
-        db.executeQuery(query, (result) => cb(result && result[0]));
+        return await db.executeQuery(query);
     }
 
-    static update({table = '', values = {}, params = {}}, cb) {
+    static async update({table = '', values = {}, params = {}}) {
         const numberParams = getFields(values).length;
         const query = {
             text: `UPDATE ${table} SET ${getUpdateValues(values)} ${getParams(params, numberParams)}`,
             values: Object.values(values).concat(Object.values(params))
         };
-        db.executeQuery(query, (result) => cb(result && result[0]));
+        return await db.executeQuery(query);
     }
 
-    static delete({table = '', params = {}}, cb) {
+    static async delete({table = '', params = {}}) {
         const query = {
             text: `DELETE FROM ${table} ${getParams(params)}`,
             values: Object.values(params)
         };
-        db.executeQuery(query, (result) => cb(result && result[0]));
+        const result = await db.executeQuery(query);
+        return result && result[0];
     }
 
-    static custom({sql = '', values = []}, cb){
+    static async custom({sql = '', values = []}){
         const query = {
             text: sql,
             values: values
         };
-        db.executeQuery(query, (result) => cb(result));
+        return await db.executeQuery(query);
     }
 }
 
 /*FUNCTIONS*/
+
+function getValues(params) {
+    let values = Object.values(params);
+    for (let i = 0; i < values.length; i++) {
+        if (isNaN(values[i])) {
+            values[i] = `%${values[i]}%`;
+        }
+    }
+    return values;
+}
 
 function getFields(params){
     return Object.getOwnPropertyNames(params);

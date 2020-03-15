@@ -9,16 +9,15 @@ const pool = new Pool({
     port: Config.DATABASE.PORT,
 });
 
-const executeQuery = (query, cb) => {
+async function executeQuery(query) {
     console.info('[QUERY]: ', JSON.stringify(query));
-    pool.query(query, (error, results) => {
-        if (error) {
-            console.log(error);
-            cb([{error: `Error executing query. ${error}`}]);
-            return;
-        }
-        cb(results.rows);
-    })
+    try {
+        const result = await pool.query(query);
+        return result.rows;
+    } catch (error) {
+        console.error(error);
+        return [{error: `Error executing query. ${error}`}];
+    }
 };
 
 module.exports = {

@@ -1,79 +1,54 @@
-const request = require('../utils/request');
-
-const databaseReq = ({res, props}, cb) => {
-    if(props.error) {
-        res.status(500).send({...props});
-        return;
-    }
-    cb(props);
-};
-
 class BaseController {
     constructor(Service) {
         this.service = new Service();
     }
 
-    create(req, res) {
+    async create(req, res) {
         const obj = req.body;
-        request(() => {
-            if(!!obj) {
-                this.service.create(obj, (props) =>
-                    databaseReq({res, props}, (data) => {
-                        res.status(201).send({message: `Create successfully`, data});
-                    })
-                );
-            } else {
-                return res.status(400).send({message: 'Not a valid object'});
-            }
-        }, res);
+
+        if(!!obj && this.isValidObject(obj)) {
+            const data = await this.service.create(obj);
+            res.status(201).send({message: `Create successfully`, data});
+        } else {
+            return res.status(400).send({message: 'Not a valid object'});
+        }
     }
 
-    getById(req, res) {
+    async getById(req, res) {
         const id = req.params.id;
-        request(() => {
-            this.service.getById(id, (user) =>
-                databaseReq({res, props: user}, (data) => {
-                    if(!!user){
-                        res.status(200).send(user);
-                    } else {
-                        res.status(404).send({message: `Object with id ${id} not found`})
-                    }
-                })
-            )
-        }, res);
+        const obj = await this.service.getById(id);
+
+        if(!!obj){
+            res.status(200).send(obj);
+        } else {
+            res.status(404).send({message: `Object with id ${id} not found`})
+        }
     }
 
-    getAll(req, res) {
-        request(() => {
-            this.service.getAll((list) =>
-                databaseReq({res, props: list}, (data) => {
-                    res.status(200).send(list);
-                })
-            )
-        }, res);
+    async getAll(req, res) {
+        const list = await this.service.getAll();
+        res.status(200).send(list);
     }
 
-    update(req, res) {
+    async update(req, res) {
         const id = req.params.id;
         const obj = req.body;
-        request(() => {
-            this.service.update(id, obj, (object) =>
-                databaseReq({res, props: object}, (data) => {
-                    res.status(200).send({message: "Update successfully", object});
-                })
-            )
-        }, res);
+        if (!!obj && this.isValidObject(obj)) {
+            const object = this.service.update(id, obj);
+            res.status(200).send({message: "Update successfully", object});
+        } else {
+            return res.status(400).send({message: 'Not a valid object'});
+        }
     }
 
-    deleteFn(req, res) {
+    async deleteFn(req, res) {
         const id = req.params.id;
-        request(() => {
-            this.service.delete(id, (props) =>
-                databaseReq({res, props}, (data) => {
-                    res.status(200).send({message: "Delete successfully"});
-                })
-            )
-        }, res);
+        await this.service.delete(id);
+        res.status(200).send({message: "Delete successfully"});
+    }
+
+    isValidObject(obj){
+        return true;
     }
 }
 

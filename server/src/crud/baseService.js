@@ -4,28 +4,28 @@ class BaseService {
         this.DAO = new DAO();
     };
 
-    getById(id, cb) {
-        this.DAO.getById({params: {id}, fields: this.fields()}, cb);
+    async getById(id) {
+        await this.DAO.getById({params: {id}, fields: this.fields()});
     };
 
-    create(values, cb) {
+    async create(values) {
         const object = this.beforePersist(values, 'CREATE');
-        return this.DAO.insert({values: object}, cb);
+        return this.DAO.insert({values: object});
     }
 
-    delete(id, cb) {
+    async delete(id) {
         const params = {id};
-        return this.DAO.delete({params}, cb);
+        return this.DAO.delete({params});
     }
 
-    update(id, values, cb) {
+    async update(id, values) {
         const params = {id};
         const object = this.beforePersist(values, 'UPDATE');
-        return this.DAO.update({values: object, params}, cb);
+        return this.DAO.update({values: object, params});
     }
 
-    getAll(cb) {
-        return this.DAO.getAll({fields: this.fields()}, cb);
+    async getAll() {
+        return this.DAO.getAll({fields: this.fields()});
     }
 
     beforePersist(object, type = 'SAVE') {

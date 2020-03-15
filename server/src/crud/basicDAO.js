@@ -6,24 +6,24 @@ class BasicDAO {
         this.table = table;
     }
 
-    getById(params, cb) {
-        return dao.selectOne({table: this.table, ...params}, cb);
+    async getById(params) {
+        return await dao.selectOne({table: this.table, ...params});
     };
 
-    insert(params, cb) {
-        return dao.insert({table: this.table, ...params}, cb);
+    insert(params) {
+        return dao.insert({table: this.table, ...params});
     }
 
-    delete(params, cb) {
-        return dao.delete({table: this.table, ...params}, cb);
+    delete(params) {
+        return dao.delete({table: this.table, ...params});
     }
 
-    update(params, cb) {
-        return dao.update({table: this.table, ...params}, cb);
+    update(params) {
+        return dao.update({table: this.table, ...params});
     }
 
-    getAll(params, cb) {
-        return dao.selectMany({table: this.table, ...params}, cb);
+    getAll(params) {
+        return dao.selectMany({table: this.table, ...params});
     }
 
 }
