@@ -6,7 +6,7 @@ const secretKey = '61851011722cea986c8ef50e577e652ec4bafad6';
 const jwt_name = '_fretz_freedom';
 
 function decodeRequestToken(req) {
-	const token = req.cookies[jwt_name];
+	const token = req.cookies && req.cookies[jwt_name];
 	return !!token && decodeJWT(token);
 }
 
@@ -35,7 +35,7 @@ function compareEncryptPassword({encryptPassword, password}) {
 }
 
 function sendAuthError(res) {
-	return res.json({
+	return res.status(404).send({
 		errors: ["You need to sign in or sign up before continuing."]
 	});
 }

@@ -25,6 +25,10 @@ class AuthService {
 		const user = await this.authDAO.getByEmail(credentials.email);
 		validateLogin(credentials, user, res);
 	}
+
+	verifyAuth(req, res, next) {
+		Security.checkToken(req, res, next);
+	}
 }
 
 module.exports = AuthService;
