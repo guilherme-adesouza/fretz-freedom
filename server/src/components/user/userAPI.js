@@ -10,9 +10,9 @@ router.use('/type', userTypeAPI);
 
 const controller = new UserController();
 
-router.get('/create', (req, res) => {
-    controller.createHelper(req, res);
-});
+// router.get('/create', (req, res, next) => {
+// 	controller.createHelper(req, res, next);
+// });
 
 buildBaseAPI(controller, router);
 
