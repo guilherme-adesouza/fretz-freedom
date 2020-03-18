@@ -2,7 +2,7 @@
 -- Table "tipo_veiculo"
 -- -----------------------------------------------------
 CREATE TABLE  "tipo_veiculo" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -12,7 +12,7 @@ CREATE TABLE  "tipo_veiculo" (
 -- Table "veiculo"
 -- -----------------------------------------------------
 CREATE TABLE  "veiculo" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "placa" VARCHAR(10) NOT NULL,
   "km" DOUBLE PRECISION NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE  "veiculo" (
 -- Table "tipo_pessoa"
 -- -----------------------------------------------------
 CREATE TABLE  "tipo_pessoa" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -40,7 +40,7 @@ CREATE TABLE  "tipo_pessoa" (
 -- Table "regiao"
 -- -----------------------------------------------------
 CREATE TABLE  "regiao" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -50,7 +50,7 @@ CREATE TABLE  "regiao" (
 -- Table "estado"
 -- -----------------------------------------------------
 CREATE TABLE  "estado" (
-  "cod_estado" INTEGER PRIMARY KEY,
+  "cod_estado" SERIAL PRIMARY KEY,
   "sigla" CHAR(2) NOT NULL,
   "nome" VARCHAR(72)
 );
@@ -60,7 +60,7 @@ CREATE TABLE  "estado" (
 -- Table "cidade"
 -- -----------------------------------------------------
 CREATE TABLE  "cidade" (
-  "cod_cidade" INTEGER PRIMARY KEY,
+  "cod_cidade" SERIAL PRIMARY KEY,
   "nome" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2),
   "estado_cod_estado" INT NOT NULL REFERENCES "estado" ("cod_estado"),
@@ -73,7 +73,7 @@ CREATE TABLE  "cidade" (
 -- Table "pessoa"
 -- -----------------------------------------------------
 CREATE TABLE  "pessoa" (
-  "id" INTEGER PRIMARY KEY ,
+  "id" SERIAL PRIMARY KEY,
   "nome" VARCHAR(200) NOT NULL,
   "cpf_cnpj" VARCHAR(18) NOT NULL,
   "data_nascimento" VARCHAR(10),
@@ -97,7 +97,7 @@ CREATE TABLE  "pessoa" (
 -- Table "viagem"
 -- -----------------------------------------------------
 CREATE TABLE  "viagem" (
-  "id" INTEGER PRIMARY KEY ,
+  "id" SERIAL PRIMARY KEY,
   "data_inicial" TIMESTAMP NOT NULL,
   "data_final" TIMESTAMP NULL,
   "veiculo_id" INT NOT NULL REFERENCES "veiculo" ("id"),
@@ -111,7 +111,7 @@ CREATE TABLE  "viagem" (
 -- Table "categoria_pedido"
 -- -----------------------------------------------------
 CREATE TABLE  "categoria_pedido" (
-  "id" INTEGER PRIMARY KEY ,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -121,7 +121,7 @@ CREATE TABLE  "categoria_pedido" (
 -- Table "pedido"
 -- -----------------------------------------------------
 CREATE TABLE  "pedido" (
-  "id" INTEGER PRIMARY KEY ,
+  "id" SERIAL PRIMARY KEY,
   "data_inicial" TIMESTAMP NOT NULL,
   "valor" VARCHAR(30) NOT NULL,
   "situacao" CHAR(2),
@@ -141,7 +141,7 @@ CREATE TABLE  "pedido" (
 -- Table "grupo_item"
 -- -----------------------------------------------------
 CREATE TABLE  "grupo_item" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -151,7 +151,7 @@ CREATE TABLE  "grupo_item" (
 -- Table "item"
 -- -----------------------------------------------------
 CREATE TABLE  "item" (
-  "id" INTEGER PRIMARY KEY ,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "quantidade" DOUBLE PRECISION NOT NULL,
   "valor_custo" VARCHAR(30) NOT NULL,
@@ -168,13 +168,14 @@ CREATE TABLE  "item" (
 -- Table "usuario"
 -- -----------------------------------------------------
 CREATE TABLE "usuario" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "nome" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2),
   "img" TEXT,
   "senha" VARCHAR(200) NOT NULL,
-  "admin" CHAR(1) NOT NULL,
-  "super" CHAR(1) NOT NULL
+  "admin" BOOLEAN NOT NULL,
+  "super" BOOLEAN NOT NULL,
+  "email" TEXT NOT NULL
 );
 
 
@@ -182,7 +183,7 @@ CREATE TABLE "usuario" (
 -- Table "tipo_auditoria"
 -- -----------------------------------------------------
 CREATE TABLE  "tipo_auditoria" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "descricao" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2)
 );
@@ -192,7 +193,7 @@ CREATE TABLE  "tipo_auditoria" (
 -- Table "auditoria"
 -- -----------------------------------------------------
 CREATE TABLE  "auditoria" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "situacao" CHAR(2),
   "data" TIMESTAMP NOT NULL,
   "tipo_auditoria_id" INT NOT NULL REFERENCES "tipo_auditoria" ("id"),
@@ -205,7 +206,7 @@ CREATE TABLE  "auditoria" (
 -- Table "pedido_has_item"
 -- -----------------------------------------------------
 CREATE TABLE  "pedido_has_item" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "pedido_id" INT NOT NULL REFERENCES "pedido" ("id"),
   "item_id" INT NOT NULL REFERENCES "item" ("id")
 );
@@ -215,7 +216,7 @@ CREATE TABLE  "pedido_has_item" (
 -- Table "pedido_has_rota"
 -- -----------------------------------------------------
 CREATE TABLE  "pedido_has_rota" (
-  "id" INTEGER PRIMARY KEY,
+  "id" SERIAL PRIMARY KEY,
   "pedido_id" INT NOT NULL REFERENCES "pedido" ("id"),
   "rota_id" INT NOT NULL REFERENCES "viagem" ("id")
 );

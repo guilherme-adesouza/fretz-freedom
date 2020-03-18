@@ -3,9 +3,9 @@ const ItemTypeDAO = require('./itemTypeDAO');
 
 class ItemTypeService extends BasicService {
 
-    constructor(props){
-        super(ItemTypeDAO)
-    };
+	constructor(props) {
+		super(ItemTypeDAO)
+	};
 }
 
 module.exports = ItemTypeService;

@@ -3,9 +3,9 @@ const VehicleDAO = require('./vehicleDAO');
 
 class VehicleService extends BasicService {
 
-    constructor(props){
-        super(VehicleDAO)
-    };
+	constructor(props) {
+		super(VehicleDAO)
+	};
 }
 
 module.exports = VehicleService;

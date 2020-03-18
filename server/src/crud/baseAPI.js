@@ -1,31 +1,31 @@
 const express = require('express');
 
 function buildBaseAPI(controller, router) {
-    if(!router) {
-        router = express.Router();
-    }
+	if (!router) {
+		router = express.Router();
+	}
 
-    router.post('/', (req, res) => {
-        controller.create(req, res);
-    });
+	router.post('/', (req, res, next) => {
+		controller.create(req, res, next);
+	});
 
-    router.get('/', (req, res) => {
-        controller.getAll(req, res);
-    });
+	router.get('/', (req, res, next) => {
+		controller.getAll(req, res, next);
+	});
 
-    router.get('/:id', (req, res) => {
-        controller.getById(req, res);
-    });
+	router.get('/:id', (req, res, next) => {
+		controller.getById(req, res, next);
+	});
 
-    router.put('/:id', (req, res) => {
-        controller.update(req, res);
-    });
+	router.put('/:id', (req, res, next) => {
+		controller.update(req, res, next);
+	});
 
-    router.delete('/:id', (req, res) => {
-        controller.deleteFn(req, res);
-    });
+	router.delete('/:id', (req, res, next) => {
+		controller.deleteFn(req, res, next);
+	});
 
-    return router;
+	return router;
 }
 
 module.exports = buildBaseAPI;

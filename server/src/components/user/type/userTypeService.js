@@ -3,9 +3,9 @@ const UserTypeDAO = require('./userTypeDAO');
 
 class UserTypeService extends BasicService {
 
-    constructor(props){
-        super(UserTypeDAO)
-    };
+	constructor(props) {
+		super(UserTypeDAO)
+	};
 }
 
 module.exports = UserTypeService;
