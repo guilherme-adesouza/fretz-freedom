@@ -1,9 +1,11 @@
 const express = require('express');
+const {middlewareAuth} = require('../components/auth/security');
 
 function buildBaseAPI(controller, router) {
 	if (!router) {
 		router = express.Router();
 	}
+	router.use(middlewareAuth);
 
 	router.post('/', (req, res, next) => {
 		controller.create(req, res, next);

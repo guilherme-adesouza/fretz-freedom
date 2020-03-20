@@ -1,7 +1,5 @@
 const express = require('express');
 
-const {checkToken} = require('./components/auth/security');
-
 const authRouter = require('./components/auth/authAPI');
 const userRouter = require('./components/user/userAPI');
 const itemRouter = require('./components/item/itemAPI');
@@ -11,8 +9,8 @@ const vehicleRouter = require('./components/vehicle/vehicleAPI');
 const routes = express.Router();
 
 routes.use('/auth', authRouter);
-routes.use('/user', checkToken, userRouter);
-routes.use('/item', checkToken, itemRouter);
-routes.use('/vehicle', checkToken, vehicleRouter);
+routes.use('/user', userRouter);
+routes.use('/item', itemRouter);
+routes.use('/vehicle', vehicleRouter);
 
 module.exports = routes;

@@ -18,11 +18,11 @@ export const PrivateComponent = ({
     useEffect(() => {
         const doAuthenticate = async () => {
             try {
-                const {isLogged, isMaster} = await Api.Fretz.User.verifyAuth();
-                let isAuthenticated = isLogged && adminRoute ? isMaster : true;
+                const user = await Api.Fretz.User.verifyAuth();
+                let isAuthenticated = !!user && adminRoute ? user.admin : true;
                 setState({
                     loading: false,
-                    isLogged,
+                    isLogged: !!user,
                     isAuthenticated,
                 });
             } catch (e) {

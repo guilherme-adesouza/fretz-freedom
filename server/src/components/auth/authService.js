@@ -9,7 +9,7 @@ function validateLogin(credentials, user, res) {
 	})) {
 		res.cookie(Security.jwt_name, Security.generateJWT(user), {httpOnly: true});
 		delete user.senha;
-		res.send({user});
+		res.status(200).send({user});
 	} else {
 		res.status(403).send({message: 'Credentials not valid'});
 	}
@@ -27,7 +27,9 @@ class AuthService {
 	}
 
 	verifyAuth(req, res, next) {
-		Security.checkToken(req, res, next);
+		Security.checkToken(req, res, (token) => {
+			res.status(200).send({user: token.user})
+		});
 	}
 }
 
