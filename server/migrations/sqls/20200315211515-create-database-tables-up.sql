@@ -173,8 +173,8 @@ CREATE TABLE "usuario" (
   "situacao" CHAR(2),
   "img" TEXT,
   "senha" VARCHAR(200) NOT NULL,
-  "admin" BOOLEAN NOT NULL,
-  "super" BOOLEAN NOT NULL,
+  "admin" BOOLEAN NOT NULL DEFAULT FALSE,
+  "super" BOOLEAN NOT NULL DEFAULT FALSE,
   "email" TEXT NOT NULL
 );
 

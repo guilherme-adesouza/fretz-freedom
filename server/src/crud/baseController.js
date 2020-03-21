@@ -8,7 +8,11 @@ class BaseController {
 
 		if (!!obj && this.isValidObject(obj)) {
 			const data = await this.service.create(obj);
-			res.status(201).send({message: `Create successfully`, data});
+			if (!data[0].error) {
+				res.status(201).send({message: `Create successfully`, data});
+			} else {
+				next(data[0].error);
+			}
 		} else {
 			return res.status(400).send({message: 'Not a valid object'});
 		}
@@ -21,10 +25,14 @@ class BaseController {
 			return res.status(400).send({message: 'ID is not valid'});
 		}
 
-		const obj = await this.service.getById(id);
+		const data = await this.service.getById(id);
 
-		if (!!obj) {
-			res.status(200).send(obj);
+		if (!!data) {
+			if (!data[0].error) {
+				res.status(200).send(data);
+			} else {
+				next(data[0].error);
+			}
 		} else {
 			res.status(404).send({message: `Object with id ${id} not found`})
 		}
@@ -32,7 +40,11 @@ class BaseController {
 
 	async getAll(req, res, next) {
 		const list = await this.service.getAll();
-		res.status(200).send(list);
+		if (!list[0].error) {
+			res.status(200).send(list);
+		} else {
+			next(list[0].error);
+		}
 	}
 
 	async update(req, res, next) {
@@ -45,7 +57,11 @@ class BaseController {
 		const obj = req.body;
 		if (!!obj && this.isValidObject(obj)) {
 			const object = this.service.update(id, obj);
-			res.status(200).send({message: "Update successfully", object});
+			if (!object[0].error) {
+				res.status(200).send({message: "Update successfully", object});
+			} else {
+				next(object[0].error);
+			}
 		} else {
 			return res.status(400).send({message: 'Not a valid object'});
 		}

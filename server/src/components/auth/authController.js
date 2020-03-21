@@ -3,13 +3,20 @@ const AuthService = require('./authService');
 
 
 class AuthController {
-	static login(req, res) {
-		const authService = new AuthService();
-		const credentials = req.body;
-		authService.emailLogin(credentials, res);
+	constructor() {
+		this.authService = new AuthService();
 	}
 
-	static logout(res) {
+	login(req, res) {
+		const credentials = req.body;
+		this.authService.emailLogin(credentials, res);
+	}
+
+	verifyAuth(req, res, next) {
+		this.authService.verifyAuth(req, res, next);
+	}
+
+	logout(res) {
 		res.clearCookie(Security.jwt_name);
 		res.sendStatus(200);
 	}

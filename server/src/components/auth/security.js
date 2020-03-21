@@ -6,7 +6,7 @@ const secretKey = '61851011722cea986c8ef50e577e652ec4bafad6';
 const jwt_name = '_fretz_freedom';
 
 function decodeRequestToken(req) {
-	const token = req.cookies[jwt_name];
+	const token = req.cookies && req.cookies[jwt_name];
 	return !!token && decodeJWT(token);
 }
 
@@ -18,8 +18,8 @@ function generateJWT(user, creationTime = null) {
 	return jwt.sign(JSON.stringify({user, expires, creationTime}), secretKey);
 }
 
-function isJWTExpires(jwt) {
-	return true;
+function isJWTExpires(token) {
+	return Date.now() > token.expires;
 }
 
 function decodeJWT(token) {
@@ -35,19 +35,24 @@ function compareEncryptPassword({encryptPassword, password}) {
 }
 
 function sendAuthError(res) {
-	return res.json({
+	return res.status(401).send({
 		errors: ["You need to sign in or sign up before continuing."]
 	});
 }
 
-function checkToken(req, res, next) {
+function checkToken(req, res, cb) {
 	let token = decodeRequestToken(req);
 
-	if (!!token) {
-		next();
+	if (!!token && !isJWTExpires(token)) {
+		delete token.user.senha;
+		cb(token);
 	} else {
 		sendAuthError(res);
 	}
+}
+
+function middlewareAuth(req, res, next) {
+	checkToken(req, res, () => next())
 }
 
 module.exports = {
@@ -56,5 +61,6 @@ module.exports = {
 	generateJWT,
 	compareEncryptPassword,
 	encrypt,
-	checkToken,
+	middlewareAuth,
+	checkToken
 };

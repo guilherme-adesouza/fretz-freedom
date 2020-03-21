@@ -7,9 +7,9 @@ class AuthDAO extends BasicDAO {
 		super('usuario');
 	}
 
-	getByEmail(email, cb) {
+	async getByEmail(email) {
 		const params = {email};
-		return dao.selectOne({table: this.table, params}, cb);
+		return await dao.selectOne({table: this.table, params});
 	};
 }
 
