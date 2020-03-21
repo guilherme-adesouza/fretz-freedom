@@ -1,6 +1,6 @@
-import AdminRoutes from './admin/AdminRoutes';
-import PrivateRoutes from './private/PrivateRoutes';
-import PublicRoutes from './public/PublicRoutes';
+import AdminRoutes from 'pages/admin/AdminRoutes';
+import PrivateRoutes from 'pages/private/PrivateRoutes';
+import PublicRoutes from 'pages/public/PublicRoutes';
 
 export default [
     AdminRoutes,

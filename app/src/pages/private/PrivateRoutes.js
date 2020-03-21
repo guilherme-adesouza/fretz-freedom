@@ -1,5 +1,5 @@
-import {PrivateRoute} from '../../router/Route';
-import Home from "./HomePage";
+import {PrivateRoute} from 'router/Route';
+import Home from "pages/private/HomePage";
 
 const routes = [
     {

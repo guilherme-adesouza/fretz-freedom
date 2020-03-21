@@ -24,7 +24,6 @@ const MyField = ({
     const component = !!COMPONENTS[type] ? COMPONENTS[type] : undefined;
     return (
         <div className={`Field ${className}`}>
-            {title && <span className="Title">{title}{required ? " *" : ""}</span>}
             <Field {...props}
                    title={title}
                    required={required}

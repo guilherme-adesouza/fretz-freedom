@@ -5,7 +5,8 @@ import {
 } from "react-router-dom";
 
 //import LoadingPage from '../pages/public/Loading';
-import Api from '../service/Api';
+import Api from 'service/Api';
+import BasicPage from "pages/BasicPage";
 
 export const PrivateComponent = ({
                                      adminRoute,
@@ -18,8 +19,9 @@ export const PrivateComponent = ({
     useEffect(() => {
         const doAuthenticate = async () => {
             try {
-                const user = await Api.Fretz.User.verifyAuth();
+                const {user} = await Api.Fretz.User.verifyAuth();
                 let isAuthenticated = !!user && adminRoute ? user.admin : true;
+                console.log(adminRoute, user);
                 setState({
                     loading: false,
                     isLogged: !!user,
@@ -40,7 +42,9 @@ export const PrivateComponent = ({
             <React.Fragment>
                 {!state.isAuthenticated ?
                     <Redirect to={{pathname: '/'}}/> :
-                    <Component {...props} />
+                    <BasicPage {...props}>
+                        <Component {...props} />
+                    </BasicPage>
                 }
             </React.Fragment>
         )

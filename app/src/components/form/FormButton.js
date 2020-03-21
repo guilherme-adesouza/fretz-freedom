@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from "../commons/Button";
 
 const FormButton = ({
                       type = 'submit',
@@ -8,9 +9,7 @@ const FormButton = ({
                       ...props
                   }) => {
     return (
-        <button className={`Button ${className}`} type={type} name={name} {...props}>
-            {children}
-        </button>
+        <Button className={`Button ${className}`} type={type} name={name} {...props} children={children} />
     );
 };
 

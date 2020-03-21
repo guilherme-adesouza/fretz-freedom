@@ -9,4 +9,4 @@ yupOriginal.setLocale({
     },
 });
 
-export const csYup = (fn) => fn(yupOriginal);
+export const yup = (fn) => fn(yupOriginal);

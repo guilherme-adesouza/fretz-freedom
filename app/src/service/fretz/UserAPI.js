@@ -1,4 +1,4 @@
-import {request} from "./FretzAPI";
+import {request} from "service/fretz/FretzAPI";
 
 class UserAPI {
     static verifyAuth = async () => {
@@ -13,7 +13,12 @@ class UserAPI {
 
     static logout = async () => {
         await request.get('/auth/logout');
-    }
+    };
+
+    static create = async (values) => {
+        const {data} = await request.post('/user', values);
+        return data;
+    };
 }
 
 export default UserAPI;

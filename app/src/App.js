@@ -6,7 +6,7 @@ import {
     Switch
 } from "react-router-dom";
 
-import pageRoutes from './pages/PageRoutes';
+import pageRoutes from 'pages/PageRoutes';
 
 function App() {
     return (

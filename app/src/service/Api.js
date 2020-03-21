@@ -1,4 +1,4 @@
-import FretzAPI from "./fretz/FretzAPI";
+import FretzAPI from "service/fretz/FretzAPI";
 
 class Api {
     static Fretz = FretzAPI;

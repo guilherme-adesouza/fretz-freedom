@@ -1,16 +1,19 @@
 import React, {useState} from "react";
 import {Form, Formik} from "formik";
 import {Redirect} from "react-router-dom";
-import * as yup from "yup";
+import {yup} from "components/form/customYup";
 
-import Api from "../service/Api";
-import Field from "./form/Field";
-import FormButton from "./form/FormButton";
+import Api from "service/Api";
+import Field from "components/form/Field";
+import FormButton from "components/form/FormButton";
+import UiMsg from "components/commons/UiMsg";
 
 
-const LoginSchema = yup.object().shape({
-    email: yup.string().required().default(''),
-    password: yup.string().required().default(''),
+const LoginSchema = yup(yup => {
+    return yup.object().shape({
+        email: yup.string().required().default(''),
+        password: yup.string().required().default(''),
+    });
 });
 
 const Login = ({
@@ -24,7 +27,8 @@ const Login = ({
             const user = await Api.Fretz.User.login(values);
             setRedirectToReferrer(true);
         } catch (e) {
-            alert('Usuário ou senha incorretos');
+            actions.setSubmitting(false);
+            UiMsg.error({message: 'Usuário ou senha incorretos', error: e});
         }
     };
 
@@ -37,12 +41,10 @@ const Login = ({
             validationSchema={LoginSchema}
             initialValues={LoginSchema.default()}
             onSubmit={attemptLogin}>
-            <Form>
-                <div className="Login Form">
-                    <Field title="E-mail" type="text" name="email"/>
-                    <Field title="Senha" type="password" name="password"/>
-                    <FormButton type="submit">Login</FormButton>
-                </div>
+            <Form className="col s12">
+                <Field title="E-mail" type="text" name="email"/>
+                <Field title="Senha" type="password" name="password"/>
+                <FormButton type="submit">Login</FormButton>
             </Form>
         </Formik>
     )

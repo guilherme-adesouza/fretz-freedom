@@ -1,1 +1,12 @@
-/**/
+/* global css*/
+:root {
+    --main-bg-color: #26a69a;
+}
+
+nav {
+    background-color: var(--main-bg-color);
+}
+
+main {
+    padding: 10px;
+}

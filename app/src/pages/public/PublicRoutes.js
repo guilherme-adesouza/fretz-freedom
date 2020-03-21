@@ -1,6 +1,6 @@
 import {Route} from "react-router-dom";
 
-import Landing from "./LandingPage";
+import Landing from "pages/public/LandingPage";
 
 const routes = [
     {

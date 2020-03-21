@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import UserAPI from './UserAPI';
+import UserAPI from 'service/fretz/UserAPI';
 
 export const request = axios.create({
     baseURL: '/api',
