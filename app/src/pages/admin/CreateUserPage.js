@@ -28,7 +28,6 @@ const UserForm = () => {
 
     return (
         <Formik
-            validationSchema={UserSchema}
             initialValues={UserSchema.default()}
             onSubmit={createUser}>
             <Form className="col s12">

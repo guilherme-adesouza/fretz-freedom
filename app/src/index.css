@@ -3,6 +3,7 @@ body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to right, rgb(172, 240, 217), rgb(221, 218, 218));
 }
 
 code {
