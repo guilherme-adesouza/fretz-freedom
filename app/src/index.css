@@ -6,6 +6,10 @@ body {
     background: linear-gradient(to right, rgb(172, 240, 217), rgb(221, 218, 218));
 }
 
+#form-box {
+    background: linear-gradient(to right, rgb(235, 237, 240), rgb(227, 243, 238));
+}
+
 code {
     font-family: monospace;
 }
