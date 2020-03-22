@@ -5,6 +5,7 @@
 
 nav {
     background-color: var(--main-bg-color);
+    padding-left: 10px;
 }
 
 main {
