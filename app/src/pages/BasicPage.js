@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
+import Footer from "../components/Footer";
 
 const BasicPage = (props) => {
     return (
@@ -12,6 +13,9 @@ const BasicPage = (props) => {
             <main className="container">
                 {props.children}
             </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 };
