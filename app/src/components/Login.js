@@ -36,15 +36,31 @@ const Login = ({
     if (redirectToReferrer) return <Redirect to={from} />;
 
     return (
-        <Formik
-            initialValues={LoginSchema.default()}
-            onSubmit={attemptLogin}>
-            <Form className="col s12">
-                <Field title="E-mail" type="text" name="email"/>
-                <Field title="Senha" type="password" name="password"/>
-                <FormButton type="submit">Login</FormButton>
-            </Form>
-        </Formik>
+        <div class="valign-wrapper row login-box">
+            <div id="form-box" class="col card hoverable s10 pull-s1 m6 pull-m3 14 pull-14">
+                <Formik
+                    initialValues={LoginSchema.default()}
+                    onSubmit={attemptLogin}>
+                    <Form className="col s12">
+                        <div class="card-content">
+                            <span class="card-title center-align">
+                                Fretz & Freedom - Login</span>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <Field title="E-mail" type="text" name="email"/>
+                                </div>
+                                <div class="input-field col s12">
+                                    <Field title="Senha" type="password" name="password"/>
+                                </div>
+                            </div>
+                            <div class="card-action center-align">
+                                <FormButton type="submit">Login</FormButton>
+                            </div> 
+                        </div>
+                    </Form>   
+                </Formik>
+            </div>
+        </div>
     )
 };
 
