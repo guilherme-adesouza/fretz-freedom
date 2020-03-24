@@ -27,16 +27,34 @@ const UserForm = () => {
     };
 
     return (
-        <Formik
-            initialValues={UserSchema.default()}
-            onSubmit={createUser}>
-            <Form className="col s12">
-                <Field title="Nome" type="text" name="nome"/>
-                <Field title="E-mail" type="text" name="email"/>
-                <Field title="Senha" type="password" name="senha"/>
-                <FormButton type="submit">Criar Usuário</FormButton>
-            </Form>
-        </Formik>
+        <div class="valign-wrapper row login-box">
+            <div id="form-box" class="col card hoverable s12 pull-s1 m6 pull-m3 14 pull-14">
+                <Formik
+                initialValues={UserSchema.default()}
+                onSubmit={createUser}>
+                    <Form className="col s12">
+                        <div class="card-content">
+                            <span class="card-title center-align">
+                                Cadastro de Usuários</span>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <Field title="Nome" type="text" name="nome"/>
+                                </div>
+                                <div class="input-field col s12">
+                                    <Field title="E-mail" type="text" name="email"/>
+                                </div>
+                                <div class="input-field col s12">
+                                    <Field title="Senha" type="password" name="senha"/>
+                                </div>
+                            </div>
+                            <div class="card-action center-align">
+                                <FormButton type="submit">Criar Usuário</FormButton>
+                            </div>    
+                        </div>
+                    </Form>
+                </Formik>            
+            </div>
+        </div>         
     );
 };
 
