@@ -7,8 +7,9 @@ const app = express();
 const routes = require('./routes');
 const {
 	notFoundHandler,
+	errorHandler,
 	logErrors,
-	errorHandler
+	criticalHandler
 } = require('./default_routes');
 
 // JSON Request parser
@@ -35,7 +36,8 @@ app.get('/', (req, res) => {
 });
 
 app.use(notFoundHandler);
-app.use(logErrors);
 app.use(errorHandler);
+app.use(logErrors);
+app.use(criticalHandler);
 
 module.exports = app;

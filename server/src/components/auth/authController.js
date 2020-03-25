@@ -7,9 +7,13 @@ class AuthController {
 		this.authService = new AuthService();
 	}
 
-	login(req, res) {
+	async login(req, res) {
 		const credentials = req.body;
-		this.authService.emailLogin(credentials, res);
+		if (!!credentials && !!credentials.email) {
+			await this.authService.emailLogin(credentials, res);
+			return;
+		}
+		res.status(400).send({error: 'No authentication provided'});
 	}
 
 	verifyAuth(req, res, next) {

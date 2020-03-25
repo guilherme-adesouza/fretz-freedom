@@ -5,7 +5,7 @@ const UserDAO = require('./userDAO');
 class UserService extends BasicService {
 
 	constructor(props) {
-		super(UserDAO)
+		super(UserDAO);
 	};
 
 	beforePersist(object) {

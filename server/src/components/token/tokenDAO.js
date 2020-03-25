@@ -1,16 +1,16 @@
 const dao = require('../../database/dao');
 const BasicDAO = require('../../crud/basicDAO');
 
-class AuthDAO extends BasicDAO {
+class TokenDAO extends BasicDAO {
 
 	constructor(props) {
-		super('usuario');
+		super('token');
 	}
 
-	async getByEmail(email) {
-		const params = {email};
+	async getByUserId(userId) {
+		const params = {user_id: userId};
 		return await dao.selectOne({table: this.table, params});
 	};
 }
 
-module.exports = AuthDAO;
+module.exports = TokenDAO;

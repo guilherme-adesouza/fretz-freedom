@@ -1,5 +1,5 @@
 const Security = require('./security');
-const AuthDAO = require('./authDAO');
+const UserDAO = require('../user/userDAO');
 
 
 function validateLogin(credentials, user, res) {
@@ -18,11 +18,11 @@ function validateLogin(credentials, user, res) {
 class AuthService {
 
 	constructor(props) {
-		this.authDAO = new AuthDAO();
+		this.userDAO = new UserDAO();
 	}
 
 	async emailLogin(credentials, res) {
-		const user = await this.authDAO.getByEmail(credentials.email);
+		const user = await this.userDAO.getByEmail(credentials.email);
 		validateLogin(credentials, user, res);
 	}
 
