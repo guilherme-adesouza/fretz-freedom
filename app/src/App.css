@@ -10,4 +10,12 @@ nav {
 
 main {
     padding: 10px;
+    height: 100vh; 
+}
+
+.page-footer {
+    background-color: #aab6b6;
+    color: rgb(39, 39, 39);
+    text-align: center;
+    padding: 10px;
 }
