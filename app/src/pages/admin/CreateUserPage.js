@@ -5,6 +5,8 @@ import Field from "components/form/Field";
 import FormButton from "components/form/FormButton";
 import Api from "service/Api";
 import UiMsg from "components/commons/UiMsg";
+import "../../components/css/Breadcrumb.css";
+import "../../components/css/Form.css";
 
 const UserSchema = yup(yup => {
     return yup.object().shape({
@@ -60,10 +62,19 @@ const UserForm = () => {
 
 const CreateUserPage = (props) => {
     return (
-        <div>
-            CRIAÇÃO DE USUÁRIOS
-            <UserForm/>
-        </div>
+        <React.Fragment>
+            <nav class="breadcrumb-nav">
+                <div class="nav-wrapper">
+                    <div class="col s12">
+                        <a href="/home" class="breadcrumb">Home</a>
+                        <a href="/admin/user/create" class="breadcrumb">Criar Usuários</a>
+                    </div>
+                </div>
+            </nav>
+            <div>
+                <UserForm />
+            </div>
+        </React.Fragment>
     )
 };
 
