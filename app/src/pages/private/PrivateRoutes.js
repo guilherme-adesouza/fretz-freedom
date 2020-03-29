@@ -1,6 +1,7 @@
 import {PrivateRoute} from 'router/Route';
 import Home from 'pages/private/HomePage';
 import ItemGroups from 'pages/private/ItemGroups';
+import Items from 'pages/private/Items';
 
 const routes = [
     {
@@ -10,6 +11,10 @@ const routes = [
     {
         path: '/itemgroups',
         component: ItemGroups
+    },
+    {
+        path: '/items',
+        component: Items
     }
 ];
 
