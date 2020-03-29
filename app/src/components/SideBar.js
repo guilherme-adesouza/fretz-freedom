@@ -28,6 +28,7 @@ const SideBar = (props) => {
                 </li>
                 <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
                 <li><a href="#!">Second Link</a></li>
+                <li><a href="/itemgroups">Grupos de Itens</a></li>
                 <li>
                     <div className="divider"></div>
                 </li>

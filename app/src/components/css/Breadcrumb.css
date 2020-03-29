@@ -1,0 +1,15 @@
+.breadcrumb-nav {
+    background: transparent;
+    box-shadow: none;
+    height: 40px;
+    line-height: 40px;
+}
+
+.breadcrumb {
+    color: rgb(68, 49, 49);
+}
+
+.breadcrumb:hover {
+    color: rgb(77, 97, 82);
+    text-decoration: underline;
+}

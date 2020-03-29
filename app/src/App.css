@@ -3,7 +3,7 @@
     --main-bg-color: #26a69a;
 }
 
-nav {
+.main-nav {
     background-color: var(--main-bg-color);
     padding-left: 10px;
 }

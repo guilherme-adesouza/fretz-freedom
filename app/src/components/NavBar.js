@@ -12,7 +12,7 @@ const NavBar = ({
                     items = [],
                 }) => {
     return (
-        <nav>
+        <nav class="main-nav">
             <div className="nav-wrapper">
                 <a href="#" className="brand-logo">
                     <img src={logo} alt="Logo" width="150" height="60"></img>
