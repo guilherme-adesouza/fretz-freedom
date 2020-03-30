@@ -5,8 +5,8 @@ import Field from "components/form/Field";
 import FormButton from "components/form/FormButton";
 import Api from "service/Api";
 import UiMsg from "components/commons/UiMsg";
-import "../../components/css/Breadcrumb.css";
-import "../../components/css/Form.css";
+import "../../components/commons/Breadcrumb.css";
+import "../../components/form/Form.css";
 
 const UserSchema = yup(yup => {
     return yup.object().shape({
@@ -29,7 +29,7 @@ const UserForm = () => {
     };
 
     return (
-        <div class="valign-wrapper row login-box">
+        <div class="valign-wrapper row">
             <div id="form-box" class="col card hoverable s12 pull-s1 m6 pull-m3 14 pull-14">
                 <Formik
                 initialValues={UserSchema.default()}
