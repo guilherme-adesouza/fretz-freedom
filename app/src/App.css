@@ -3,10 +3,19 @@
     --main-bg-color: #26a69a;
 }
 
-nav {
+.main-nav {
     background-color: var(--main-bg-color);
+    padding-left: 10px;
 }
 
 main {
+    padding: 10px;
+    height: 150vh;
+}
+
+.page-footer {
+    background-color: #aab6b6;
+    color: rgb(39, 39, 39);
+    text-align: center;
     padding: 10px;
 }

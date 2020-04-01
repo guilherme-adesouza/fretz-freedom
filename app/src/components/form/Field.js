@@ -18,7 +18,7 @@ const MyField = ({
                      name= '',
                      type = 'text',
                      title = null,
-                     required = false,
+                     required = true,
                      ...props
                  }) => {
     const component = !!COMPONENTS[type] ? COMPONENTS[type] : undefined;
