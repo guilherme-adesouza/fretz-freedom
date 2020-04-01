@@ -1,4 +1,4 @@
-const {DATABASE} = require('./utils/config');
+const {DATABASE} = require('../utils/config');
 const DBMigrate = require('db-migrate');
 
 const dbConfig = {

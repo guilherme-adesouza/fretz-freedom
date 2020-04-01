@@ -10,7 +10,7 @@ const {
 	errorHandler,
 	logErrors,
 	criticalHandler
-} = require('./default_routes');
+} = require('./middlewares/defaultHandlers');
 
 // JSON Request parser
 app.use(cookieParser());

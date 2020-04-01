@@ -1,74 +1,83 @@
 const TokenService = require('./tokenService');
-const BasicController = require('../../crud/baseController');
+const Validator = require('../../utils/requestValidators');
+const { loggedUser } = require('../../utils/security');
+const { uuid } = require('../../utils/randomUUID');
 
 class TokenController {
-	constructor(Service) {
+
+	constructor() {
 		this.service = new TokenService();
 	}
 
 	async create(req, res, next) {
 		const obj = req.body;
-		const data = await this.service.create(obj);
-		if (!data[0].error) {
+		const user = loggedUser(req, res);
+		let userId = user.id;
+
+		if (!!obj && !!obj.userId) {
+			if (user.super) {
+				userId = obj.userId;
+			} else {
+				next({status: 403});
+			}
+		}
+
+		const token = uuid();
+		const data = await this.service.create({token, usuario_id: userId});
+
+		if (Validator.queryResult(data, next)) {
 			res.status(201).send({message: `Create successfully`, data});
-		} else {
-			next(data[0].error);
 		}
 	}
 
 	async getById(req, res, next) {
 		const id = req.params.id;
 
-		if(isNaN(id)) {
-			return res.status(400).send({message: 'ID is not valid'});
-		}
+		if (Validator.idRequest(id, next)) {
+			const data = await this.service.getById(id);
 
-		const data = await this.service.getById(id);
-
-		if (!!data) {
-			if (!data[0].error) {
-				res.status(200).send(data);
-			} else {
-				next(data[0].error);
+			if (!data) {
+				res.status(404).send({message: `Object with id ${id} not found`});
+				return;
 			}
-		} else {
-			res.status(404).send({message: `Object with id ${id} not found`})
+
+			if (Validator.queryResult(data, next)) {
+				res.status(200).send(data);
+			}
 		}
 	}
 
 	async getAll(req, res, next) {
-		const list = await this.service.getAll();
-		if (!list[0].error) {
-			res.status(200).send(list);
-		} else {
-			next(list[0].error);
+		const tokens = await this.service.getAll();
+
+		if (Validator.queryResult(tokens, next)) {
+			res.status(200).send({tokens});
 		}
 	}
 
 	async update(req, res, next) {
 		const id = req.params.id;
 
-		if(isNaN(id)) {
-			return res.status(400).send({message: 'ID is not valid'});
-		}
+		if (Validator.idRequest(id, next)) {
+			const token = uuid();
+			const object = await this.service.update(id, {token});
 
-		const object = await this.service.update(id);
-		if (!object[0].error) {
-			res.status(200).send({message: "Update successfully", object});
-		} else {
-			next(object[0].error);
+			if (Validator.queryResult(data, next)) {
+				res.status(200).send({message: "Update successfully", object});
+			}
 		}
 	}
 
 	async deleteFn(req, res, next) {
 		const id = req.params.id;
 
-		if(isNaN(id)) {
-			return res.status(400).send({message: 'ID is not valid'});
-		}
+		if (Validator.idRequest(id, next)) {
+			const data = await this.service.delete(id);
 
-		await this.service.delete(id);
-		res.status(200).send({message: "Delete successfully"});
+			if (Validator.queryResult(data, next)) {
+				res.status(200).send({message: "Delete successfully"});
+			}
+		}
 	}
 }
 

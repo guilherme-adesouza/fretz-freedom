@@ -1,4 +1,4 @@
-const Config = require('../../utils/config');
+const Config = require('./config');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -45,14 +45,23 @@ function checkToken(req, res, cb) {
 
 	if (!!token && !isJWTExpires(token)) {
 		delete token.user.senha;
-		cb(token);
+		if (!!cb) {
+			cb(token);
+		} else {
+			return token
+		}
 	} else {
 		sendAuthError(res);
+		return false;
 	}
 }
 
-function middlewareAuth(req, res, next) {
-	checkToken(req, res, () => next())
+function loggedUser(req, res) {
+	const token = checkToken(req, res);
+	if (!!token) {
+		return token.user;
+	}
+	return false;
 }
 
 module.exports = {
@@ -61,6 +70,6 @@ module.exports = {
 	generateJWT,
 	compareEncryptPassword,
 	encrypt,
-	middlewareAuth,
-	checkToken
+	checkToken,
+	loggedUser,
 };

@@ -1,38 +1,16 @@
+const Validator = require('../utils/requestValidators');
+
 class BaseController {
 	constructor(Service) {
 		this.service = new Service();
 	}
 
-	checkValidObject(object, next) {
-		if (!object || !this.isValidObject(object)) {
-			next({status: 400, message: 'Not a valid object'});
-			return false;
-		}
-		return true;
-	}
-
-	checkDatabaseError(object, next) {
-		if (!!object.error || !!object[0].error) {
-			next(object[0].error);
-			return false;
-		}
-		return true;
-	}
-
-	checkIDRequest(id, next) {
-		if (isNaN(id)) {
-			next({status: 400, message: `ID '${id}' is not valid`});
-			return false;
-		}
-		return true;
-	}
-
 	async create(req, res, next) {
 		const obj = req.body;
 
-		if (this.checkValidObject(obj, next)) {
+		if (Validator.isObject(this.isValidObject, obj, next)) {
 			const data = await this.service.create(obj);
-			if (this.checkDatabaseError(data, next)) {
+			if (Validator.queryResult(data, next)) {
 				res.status(201).send({message: `Create successfully`, data: data[0]});
 			}
 		}
@@ -41,21 +19,23 @@ class BaseController {
 	async getById(req, res, next) {
 		const id = req.params.id;
 
-		if(this.checkIDRequest(id, next)) {
+		if(Validator.idRequest(id, next)) {
 			const data = await this.service.getById(id);
-			if (!!data) {
-				if(this.checkDatabaseError(data, next)) {
-					res.status(200).send(data);
-				}
-			} else {
+
+			if (!data) {
 				res.status(404).send({message: `Object with id ${id} not found`});
+				return;
+			}
+
+			if (Validator.queryResult(data, next)) {
+				res.status(200).send(data);
 			}
 		}
 	}
 
 	async getAll(req, res, next) {
 		const list = await this.service.getAll();
-		if (this.checkDatabaseError(list, next)) {
+		if (Validator.queryResult(list, next)) {
 			res.status(200).send(list);
 		}
 	}
@@ -63,11 +43,11 @@ class BaseController {
 	async update(req, res, next) {
 		const id = req.params.id;
 
-		if (this.checkIDRequest(id, next)) {
+		if (Validator.idRequest(id, next)) {
 			const obj = req.body;
-			if (this.checkValidObject(obj, next)) {
+			if (Validator.isObject(this.isValidObject, obj, next)) {
 				const object = await this.service.update(id, obj);
-				if (this.checkDatabaseError(object, next)) {
+				if (Validator.queryResult(object, next)) {
 					res.status(200).send({message: "Update successfully", object});
 				}
 			}
@@ -77,9 +57,9 @@ class BaseController {
 	async deleteFn(req, res, next) {
 		const id = req.params.id;
 
-		if (this.checkIDRequest(id, next)) {
+		if (Validator.idRequest(id, next)) {
 			const result = await this.service.delete(id);
-			if (this.checkDatabaseError(result)) {
+			if (Validator.queryResult(result)) {
 				res.status(200).send({message: "Delete successfully"});
 			}
 		}

@@ -8,7 +8,12 @@ class TokenDAO extends BasicDAO {
 	}
 
 	async getByUserId(userId) {
-		const params = {user_id: userId};
+		const params = {usuario_id: userId};
+		return await dao.selectOne({table: this.table, params});
+	};
+
+	async getByToken(token) {
+		const params = {token};
 		return await dao.selectOne({table: this.table, params});
 	};
 }

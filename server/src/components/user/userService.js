@@ -1,4 +1,4 @@
-const Security = require('../auth/security');
+const Security = require('../../utils/security');
 const BasicService = require('../../crud/baseService');
 const UserDAO = require('./userDAO');
 

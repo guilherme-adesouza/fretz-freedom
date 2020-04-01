@@ -1,4 +1,3 @@
-const Security = require('../auth/security');
 const BasicService = require('../../crud/baseService');
 const TokenDAO = require('./tokenDAO');
 
