@@ -1,4 +1,4 @@
-const {DATABASE} = require('../utils/config');
+const { DATABASE } = require('../utils/config');
 
 const Pool = require('pg').Pool;
 const pool = new Pool({

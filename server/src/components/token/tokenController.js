@@ -1,5 +1,5 @@
 const TokenService = require('./tokenService');
-const Validator = require('../../utils/requestValidators');
+const Validator = require('../../middlewares/requestValidators');
 const { loggedUser } = require('../../utils/security');
 const { uuid } = require('../../utils/randomUUID');
 

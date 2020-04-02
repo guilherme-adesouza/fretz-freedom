@@ -13,12 +13,13 @@ class AuthController {
 		if (!!credentials) {
 			if (!!credentials.token) {
 				await this.authService.tokenLogin(credentials, res);
+				return;
 			} else if (!!credentials.email) {
 				await this.authService.emailLogin(credentials, res);
+				return;
 			}
-		} else {
-			res.status(400).send({error: 'No authentication provided'});
 		}
+		res.status(400).send({error: 'No authentication provided'});
 	}
 
 	verifyAuth(req, res, next) {
