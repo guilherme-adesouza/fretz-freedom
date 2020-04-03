@@ -1,11 +1,11 @@
-const Security = require('../auth/security');
+const Security = require('../../utils/security');
 const BasicService = require('../../crud/baseService');
 const UserDAO = require('./userDAO');
 
 class UserService extends BasicService {
 
 	constructor(props) {
-		super(UserDAO)
+		super(UserDAO);
 	};
 
 	beforePersist(object) {

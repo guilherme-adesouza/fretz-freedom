@@ -7,9 +7,10 @@ const app = express();
 const routes = require('./routes');
 const {
 	notFoundHandler,
+	errorHandler,
 	logErrors,
-	errorHandler
-} = require('./default_routes');
+	criticalHandler
+} = require('./middlewares/defaultHandlers');
 
 // JSON Request parser
 app.use(cookieParser());
@@ -35,7 +36,8 @@ app.get('/', (req, res) => {
 });
 
 app.use(notFoundHandler);
-app.use(logErrors);
 app.use(errorHandler);
+app.use(logErrors);
+app.use(criticalHandler);
 
 module.exports = app;

@@ -1,15 +1,24 @@
-const Security = require('./security');
+const Security = require('../../utils/security');
 const AuthService = require('./authService');
 
 
 class AuthController {
+
 	constructor() {
 		this.authService = new AuthService();
 	}
 
-	login(req, res) {
+	async login(req, res) {
 		const credentials = req.body;
-		this.authService.emailLogin(credentials, res);
+		if (!!credentials) {
+			if (!!credentials.token) {
+				await this.authService.tokenLogin(credentials, res);
+			} else if (!!credentials.email) {
+				await this.authService.emailLogin(credentials, res);
+			}
+		} else {
+			res.status(400).send({error: 'No authentication provided'});
+		}
 	}
 
 	verifyAuth(req, res, next) {

@@ -1,6 +1,6 @@
 const server = require('./server');
 const {APP} = require('./utils/config');
-const executeMigrations = require('./migrations');
+const executeMigrations = require('./database/migrations');
 
 executeMigrations(() => {
 	server.listen(APP.PORT, () => {
