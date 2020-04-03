@@ -1,4 +1,4 @@
-const Validator = require('../utils/requestValidators');
+const Validator = require('../middlewares/requestValidators');
 
 class BaseController {
 	constructor(Service) {
@@ -20,7 +20,7 @@ class BaseController {
 		const id = req.params.id;
 
 		if(Validator.idRequest(id, next)) {
-			const data = await this.service.getById(id);
+			const data = await this.service.getById(Number(id));
 
 			if (!data) {
 				res.status(404).send({message: `Object with id ${id} not found`});

@@ -7,14 +7,14 @@ class Validators {
 		return true;
 	}
 
-	static queryResult(object, next) {
-		if (Array.isArray(object)) {
-			if (!!object[0].error) {
-				next(object[0].error);
+	static queryResult(result, next) {
+		if (Array.isArray(result)) {
+			if (!!result[0] && !!result[0].error) {
+				next(result[0].error);
 				return false;
 			}
-		} else if (!!object && !!object.error) {
-			next(object[0].error);
+		} else if (!!result && !!result.error) {
+			next(result[0].error);
 			return false;
 		}
 		return true;

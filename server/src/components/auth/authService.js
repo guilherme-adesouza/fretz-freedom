@@ -1,7 +1,7 @@
 const Security = require('../../utils/security');
 const UserDAO = require('../user/userDAO');
 const TokenDAO = require('../token/tokenDAO');
-const Validator = require('../../utils/requestValidators');
+const Validator = require('../../middlewares/requestValidators');
 
 function sendCookie(user, res) {
 	res.cookie(Security.jwt_name, Security.generateJWT(user), {httpOnly: true});

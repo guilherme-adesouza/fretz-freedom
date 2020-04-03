@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const ItemController = require('./itemController');
-const itemTypeAPI = require('./type/itemTypeAPI');
+const itemGroupAPI = require('./group/itemGroupAPI');
 const buildBaseAPI = require('../../crud/baseAPI');
 
 //has to call nested routes before to avoid conflicts
-router.use('/type', itemTypeAPI);
+router.use('/group', itemGroupAPI);
 
 const controller = new ItemController();
 buildBaseAPI(controller, router);

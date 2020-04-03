@@ -15,6 +15,11 @@ describe('Sample test endpoints', () => {
 		request(app)
 			.get('/')
 			.expect(200, done);
+	});
+	it('should block api endpoints without auth', async (done) => {
+		request(app)
+			.get('/api/user')
+			.expect(401, done);
 	})
 });
 
