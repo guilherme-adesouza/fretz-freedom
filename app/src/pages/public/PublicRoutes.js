@@ -1,11 +1,11 @@
 import {Route} from "react-router-dom";
 
-import Landing from "pages/public/LandingPage";
+import Login from "pages/public/LoginPage";
 
 const routes = [
     {
         path: '/',
-        component: Landing
+        component: Login
     },
     // {
     //     path: '/404',

@@ -1,12 +1,14 @@
+import "components/commons/UiMsg.css"
+import M from "materialize-css"
 import React from "react";
 
 class UiMsg {
     static error({message = '', error = ''}) {
-        alert(`${message} :\n\t${JSON.stringify(error)}`);
+        M.toast({html: message || error, classes: 'rounded', displayLength: 1500});
     }
 
     static alert({message = ''}) {
-        alert(message);
+        M.toast({html: message, classes: 'rounded', displayLength: 1500});
     }
 
     static success({message = ''}) {

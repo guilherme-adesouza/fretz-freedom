@@ -19,3 +19,9 @@ main {
     text-align: center;
     padding: 10px;
 }
+
+/*THEME CSS*/
+.theme-bgc {
+    background-color: var(--main-bg-color);
+    color: #fff;
+}

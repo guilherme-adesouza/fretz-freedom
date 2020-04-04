@@ -3,12 +3,11 @@ import { yup } from "components/form/customYup";
 import { Form, Formik } from "formik";
 import Field from "components/form/Field";
 import FormButton from "components/form/FormButton";
-import Button from "../../components/commons/Button";
-import Icon from "../../components/commons/Icon";
+import Button from "components/commons/Button";
+import Icon from "components/commons/Icon";
 import Api from "service/Api";
 import UiMsg from "components/commons/UiMsg";
-import "../../components/commons/Breadcrumb.css";
-import "../../components/form/Form.css";
+import "components/commons/Breadcrumb.css";
 
 const ItemGroupSchema = yup(yup => {
     return yup.object().shape({
@@ -24,22 +23,22 @@ const ItemGroupsForm = () => {
     };
 
     return (
-        <div class="valign-wrapper row">
-            <div id="form-box" class="col card hoverable s12 pull-s1 m6 pull-m3 14 pull-14">
+        <div className="valign-wrapper row">
+            <div id="form-box" className="col card s12 pull-s1 m6 pull-m3 14 pull-14">
                 <Formik
                     initialValues={ItemGroupSchema.default()}
                     onSubmit={createItemGroup}>
                     <Form className="col s12">
-                        <div class="card-content">
-                            <span class="card-title center-align">
+                        <div className="card-content">
+                            <span className="card-title center-align">
                                 Cadastro de Grupos de Itens</span>
-                            <div class="row">
-                                <div class="input-field col s12">
+                            <div className="row">
+                                <div className="input-field col s12">
                                     <Field title="Descrição" type="text" name="descricao" />
                                 </div>
                                 <Field title="itemGroupId" type="hidden" name="itemGroupId" />
                             </div>
-                            <div class="card-action center-align">
+                            <div className="card-action center-align">
                                 <FormButton type="submit">Salvar</FormButton>
                                 <FormButton type="reset">Limpar</FormButton>
                             </div>
@@ -54,10 +53,10 @@ const ItemGroupsForm = () => {
 // Necessário preencher a tabela com dados vindos do banco e configurar ações dos botões Editar/Excluir
 const ItemGroupsTable = () => {
     return (
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <table class="striped teal lighten-2 left-aling">
+        <div className="container">
+            <div className="row">
+                <div className="col s12">
+                    <table className="striped teal lighten-2 left-aling">
                         <thead>
                             <tr>
                                 <th>Descrição</th>
@@ -87,11 +86,11 @@ const ItemGroupsTable = () => {
 const ItemGroups = (props) => {
     return (
         <React.Fragment>
-            <nav class="breadcrumb-nav">
-                <div class="nav-wrapper">
-                    <div class="col s12">
-                        <a href="/home" class="breadcrumb">Home</a>
-                        <a href="/itemgroups" class="breadcrumb">Grupos de Itens</a>
+            <nav className="breadcrumb-nav">
+                <div className="nav-wrapper">
+                    <div className="col s12">
+                        <a href="/home" className="breadcrumb">Home</a>
+                        <a href="/itemgroups" className="breadcrumb">Grupos de Itens</a>
                     </div>
                 </div>
             </nav>
