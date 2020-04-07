@@ -1,6 +1,8 @@
 import axios from "axios";
 
-import UserAPI from 'service/fretz/UserAPI';
+import UserAPI from "service/fretz/UserAPI";
+import ItemAPI from "service/fretz/ItemAPI";
+import GroupItemAPI from "service/fretz/GroupItemAPI";
 
 export const request = axios.create({
     baseURL: '/api',
@@ -9,6 +11,8 @@ export const request = axios.create({
 
 class FretzAPI {
     static User = UserAPI;
+    static Item = new ItemAPI();
+    static GroupItem = new GroupItemAPI();
 }
 
 export default FretzAPI;

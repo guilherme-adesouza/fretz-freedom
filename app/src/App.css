@@ -20,6 +20,10 @@ main {
     padding: 10px;
 }
 
+.drag-target {
+    pointer-events: none;
+}
+
 /*THEME CSS*/
 .theme-bgc {
     background-color: var(--main-bg-color);

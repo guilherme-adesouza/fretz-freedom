@@ -9,7 +9,6 @@ const BasicPage = (props) => {
             <header>
                 <NavBar {...props}/>
             </header>
-            <SideBar />
             <main className="container">
                 {props.children}
             </main>
