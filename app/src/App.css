@@ -20,6 +20,9 @@ main {
     padding: 10px;
 }
 
+/*MATERIALIZE-CSS overrides*/
+
+.input-field > label,
 .drag-target {
     pointer-events: none;
 }

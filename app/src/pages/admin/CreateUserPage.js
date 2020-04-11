@@ -34,13 +34,13 @@ const UserForm = () => {
                 <div className="card-content">
                     <span className="card-title center-align">Cadastro de Usuários</span>
                     <div className="row">
-                        <div className="input-field col s12">
+                        <div className="col s12">
                             <Field title="Nome" type="text" name="nome"/>
                         </div>
-                        <div className="input-field col s12">
+                        <div className="col s12">
                             <Field title="E-mail" type="text" name="email"/>
                         </div>
-                        <div className="input-field col s12">
+                        <div className="col s12">
                             <Field title="Senha" type="password" name="senha"/>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ const ItemGroupsForm = ({updateData}) => {
     const createItemGroup = async (values, actions) => {
         try {
             const data = await Api.Fretz.GroupItem.create(values);
+            actions.resetForm();
             updateData();
         } catch (e) {
             UiMsg.error({message: 'Ocorreu um erro ao tentar criar o grupo de item'});
@@ -42,7 +43,7 @@ const ItemGroupsForm = ({updateData}) => {
                         <span className="card-title center-align">
                             Cadastro de Grupos de Itens</span>
                         <div className="row">
-                            <div className="input-field col s12">
+                            <div className="col s12">
                                 <Field title="Descrição" type="text" name="descricao" />
                             </div>
                             <Field title="itemGroupId" type="hidden" name="itemGroupId" />
@@ -70,7 +71,7 @@ const ItemGroups = (props) => {
     const fetchData = async () => {
         const _groupItems = await Api.Fretz.GroupItem.getAll();
         setGroupItems(_groupItems);
-    }
+    };
 
     useEffect(() => {
         fetchData();

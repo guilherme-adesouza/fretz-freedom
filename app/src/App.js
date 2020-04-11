@@ -1,6 +1,7 @@
 import './App.css';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as M from "materialize-css";
 import {
     BrowserRouter as Router,
     Switch
@@ -9,6 +10,7 @@ import {
 import pageRoutes from 'pages/PageRoutes';
 
 function App() {
+
     return (
         <div className="App">
             <Router>

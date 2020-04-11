@@ -4,7 +4,6 @@ const TextField = ({
                        type = "text",
                        title = null,
                        placeholder = '',
-                       id = '_form_id',
                        className = '',
                        field,
                        form,
@@ -18,10 +17,7 @@ const TextField = ({
         );
     }
     return (
-        <div className="input-field col s12">
-            <input id={id} className="validate" type={type} {...field} {...props}/>
-            <label htmlFor={id}>{title}</label>
-        </div>
+        <input className="validate" type={type} {...field} />
 );
 };
 

@@ -10,7 +10,7 @@ const FormWrapper = ({
                           ...props
                       }) => {
     return (
-        <div id={id} className={`col card s10 pull-s1 ${className}`}>
+        <div id={id} style={{margin: '20px auto 0'}} className={`container row card ${className}`}>
             <Formik
                 initialValues={initialValues}
                 onSubmit={onSubmit}>

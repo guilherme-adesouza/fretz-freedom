@@ -1,9 +1,9 @@
 import React from 'react';
 import {Field, ErrorMessage} from 'formik';
 
-import TextField from './TextField';
-import SelectField from './SelectField';
-import DateField from './DateField';
+import TextField from 'components/form/TextField';
+import SelectField from 'components/form/SelectField';
+import DateField from 'components/form/DateField';
 
 const COMPONENTS = {
     "text": TextField,
@@ -11,6 +11,22 @@ const COMPONENTS = {
     "password": TextField,
     "select": SelectField,
     "date": DateField,
+};
+
+const InputWrapper = ({
+                          id = '',
+                          title = '',
+                          field = {},
+                          ...props
+                      }) => {
+    const _id = id || `form_field_${field.name}`;
+    const Component = !!COMPONENTS[props.type] ? COMPONENTS[props.type] : TextField;
+    return (
+        <div className="input-field">
+            <Component id={_id} field={field} title={title} {...props}/>
+            { props.type !== 'hidden' && <label htmlFor={id}>{title}</label> }
+        </div>
+    )
 };
 
 const MyField = ({
@@ -21,7 +37,6 @@ const MyField = ({
                      required = true,
                      ...props
                  }) => {
-    const component = !!COMPONENTS[type] ? COMPONENTS[type] : undefined;
     return (
         <div className={`Field ${className}`}>
             <Field {...props}
@@ -29,7 +44,8 @@ const MyField = ({
                    required={required}
                    name={name}
                    type={type}
-                   component={component}/>
+                   component={InputWrapper}>
+            </Field>
             <ErrorMessage component="span" className="Error" name={name}/>
         </div>
     )

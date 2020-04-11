@@ -29,6 +29,9 @@ class BaseService {
 	}
 
 	beforePersist(object, type = 'SAVE') {
+		if (type === 'CREATE') {
+			delete object.id;
+		}
 		return object;
 	}
 

@@ -24,7 +24,7 @@ const ItemSchema = yup(yup => {
     })
 });
 
-const ItemsForm = ({}) => {
+const ItemsForm = ({updateData, groupItems}) => {
 
     useEffect(() => {
         M.updateTextFields();
@@ -34,6 +34,7 @@ const ItemsForm = ({}) => {
         try {
             values.quantidade = 0;
             const data = await Api.Fretz.Item.create(values);
+            actions.resetForm();
         } catch (e) {
             UiMsg.error({message: 'Ocorreu um erro ao tentar criar o item'});
         } finally {
@@ -51,25 +52,29 @@ const ItemsForm = ({}) => {
                         <span className="card-title center-align">
                             Cadastro de Itens</span>
                         <div className="row">
-                            <div className="input-field col s12">
+                            <div className="col s12">
                                 <Field title="Descrição" type="text" name="descricao" />
                             </div>
-                            <div className="input-field col s4">
+                            <div className="col s4">
                                 <Field title="Unid. Medida" type="text" name="unidade_medida" />
                             </div>
-                            <div className="input-field col s4">
-                                <Field title="Grupo do Item" type="text" name="grupo_item_id" />
+                            <div className="col s4">
+                                <Field title="Grupo do Item"
+                                       options={groupItems}
+                                       keys={{value: "id", label: "descricao"}}
+                                       type="select"
+                                       name="grupo_item_id" />
                             </div>
-                            <div className="input-field col s4">
+                            <div className="col s4">
                                 <Field title="Valor de Custo" placeholder="R$ " type="text" name="valor_custo" />
                             </div>
-                            <div className="input-field col s4">
+                            <div className="col s4">
                                 <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" />
                             </div>
-                            <div className="input-field col s4">
+                            <div className="col s4">
                                 <Field title="Volume" type="text" name="volume" />
                             </div>
-                            <div className="input-field col s4">
+                            <div className="col s4">
                                 <Field title="Peso" type="text" name="peso" />
                             </div>
                             <Field title="itemId" type="hidden" name="itemId" />
@@ -93,11 +98,14 @@ const ItemsTable = ({items}) => {
 
 const Items = (props) => {
     const [items, setItems] = useState([]);
+    const [groupItems, setGroupItems] = useState([]);
 
     const fetchData = async () => {
         const _items = await Api.Fretz.Item.getAll();
+        const _groupItems = await Api.Fretz.GroupItem.getAll();
         setItems(_items);
-    }
+        setGroupItems(_groupItems);
+    };
 
     useEffect(() => {
         fetchData();
@@ -106,7 +114,7 @@ const Items = (props) => {
     return (
         <React.Fragment>
             <div>
-                <ItemsForm updateData={fetchData}/>
+                <ItemsForm updateData={fetchData} groupItems={groupItems}/>
             </div>
             <div>
                 <ItemsTable items={items}/>
