@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import M from "materialize-css";
 import {Field, ErrorMessage} from 'formik';
 
 import TextField from 'components/form/TextField';
@@ -21,6 +22,11 @@ const InputWrapper = ({
                       }) => {
     const _id = id || `form_field_${field.name}`;
     const Component = !!COMPONENTS[props.type] ? COMPONENTS[props.type] : TextField;
+
+    useEffect(() => {
+        M.updateTextFields();       
+    }, [field.value]);
+
     return (
         <div className="input-field">
             <Component id={_id} field={field} title={title} {...props}/>

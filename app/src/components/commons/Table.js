@@ -1,4 +1,6 @@
+import "components/commons/Table.css";
 import React from "react";
+
 import Button from "components/commons/Button";
 import Icon from "components/commons/Icon";
 
@@ -10,18 +12,22 @@ const Table = ({
                    itemTitle = '',
                }) => {
 
-    const _header = header || !!data && data.length > 0 ? Object.keys(data[0]) : [];
+    const _header = header || (!!data && data.length > 0) ? Object.keys(data[0]) : [];
 
     return (
         <table>
             <thead>
-            <tr>
-                {_header.map((column, idx) => {
-                    return (
-                        <th key={idx}>{column}</th>
+                <tr>
+                    {_header.map((column, idx) => {
+                        return (
+                            <th key={idx}>{column}</th>
+                        )}
                     )}
-                )}
-            </tr>
+                    {actions.length > 0 &&
+                        <th></th>
+                    }
+                </tr>
+
             </thead>
             <tbody>
             {data.map((row, idx) => (
@@ -37,16 +43,17 @@ const Table = ({
                                                           </td>
                                                       )
                               )}
-                              {actions.map((action, idx) => {
-                                  return (
-                                      <td key={idx}>
-                                          <Button onClick={() => !action.onClick && action.onClick(row)}>
-                                              <Icon icon={action.icon} size={action.iconSize || "medium"}/>
-                                              <span>{action.description}</span>
-                                          </Button>
-                                      </td>
-                                  )
+                              {actions.length > 0 &&
+                              <td className="table-actions">
+                                {actions.map(({onClick, icon, iconSize, ...props}, idx) => {
+                                    return (
+                                            <Button key={idx} onClick={() => !!onClick && onClick(row)} {...props}>
+                                                <Icon icon={icon} size={iconSize || "medium"}/>
+                                            </Button>
+                                    )
                               })}
+                              </td>
+                              }
                           </tr>
                       )
             )}

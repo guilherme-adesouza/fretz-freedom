@@ -14,7 +14,7 @@ class Validators {
 				return false;
 			}
 		} else if (!!result && !!result.error) {
-			next(result[0].error);
+			next(result.error);
 			return false;
 		}
 		return true;

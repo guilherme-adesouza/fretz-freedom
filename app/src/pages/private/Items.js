@@ -1,13 +1,12 @@
 import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
-import M from "materialize-css";
 
 import { yup } from "components/form/customYup";
 import Form from "components/form/Form";
 import Field from "components/form/Field";
-import FormButton from "components/form/FormButton";
 import UiMsg from "components/commons/UiMsg";
-import {TableCRUD} from "components/commons/Table";
+import { TableCRUD } from "components/commons/Table";
+import { ModalConfirm } from "components/commons/Modal";
 
 import Api from "service/Api";
 
@@ -24,19 +23,21 @@ const ItemSchema = yup(yup => {
     })
 });
 
-const ItemsForm = ({updateData, groupItems}) => {
-
-    useEffect(() => {
-        M.updateTextFields();
-    }, []);
+const ItemsForm = ({updateData, groupItems, formRef}) => {
 
     const createItem = async (values, actions) => {
+        const isEdit = !!values.id && values.id != 0;
         try {
             values.quantidade = 0;
-            const data = await Api.Fretz.Item.create(values);
+            if (isEdit) {
+                await Api.Fretz.Item.update(values.id, values);
+            } else {
+                await Api.Fretz.Item.create(values);
+            }
             actions.resetForm();
+            updateData();
         } catch (e) {
-            UiMsg.error({message: 'Ocorreu um erro ao tentar criar o item'});
+            UiMsg.error({message: `Ocorreu um erro ao tentar ${isEdit ? 'editar' : 'criar'} o item`});
         } finally {
             actions.setSubmitting(false);
         }
@@ -45,79 +46,97 @@ const ItemsForm = ({updateData, groupItems}) => {
     return (
         <div className="valign-wrapper row">
             <Form
+                innerRef={formRef}
                 id="items-form"
                 initialValues={ItemSchema.default()}
-                onSubmit={createItem}>
-                    <div className="card-content">
-                        <span className="card-title center-align">
-                            Cadastro de Itens</span>
-                        <div className="row">
-                            <div className="col s12">
-                                <Field title="Descrição" type="text" name="descricao" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Unid. Medida" type="text" name="unidade_medida" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Grupo do Item"
-                                       options={groupItems}
-                                       keys={{value: "id", label: "descricao"}}
-                                       type="select"
-                                       name="grupo_item_id" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Valor de Custo" placeholder="R$ " type="text" name="valor_custo" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Volume" type="text" name="volume" />
-                            </div>
-                            <div className="col s4">
-                                <Field title="Peso" type="text" name="peso" />
-                            </div>
-                            <Field title="itemId" type="hidden" name="itemId" />
+                onSubmit={createItem}
+                defaultActionButtons={true}>
+                    <span className="card-title center-align">Cadastro de Itens</span>
+                    <div className="row">
+                        <div className="col s12">
+                            <Field title="Descrição" type="text" name="descricao" />
                         </div>
-                        <div className="card-action right-align">
-                            <FormButton type="submit">Salvar</FormButton>
-                            <FormButton type="reset">Limpar</FormButton>
+                        <div className="col s4">
+                            <Field title="Unid. Medida" type="text" name="unidade_medida" />
                         </div>
+                        <div className="col s4">
+                            <Field title="Grupo do Item"
+                                    options={groupItems}
+                                    keys={{value: "id", label: "descricao"}}
+                                    type="select"
+                                    name="grupo_item_id" />
+                        </div>
+                        <div className="col s4">
+                            <Field title="Valor de Custo" placeholder="R$ " type="text" name="valor_custo" />
+                        </div>
+                        <div className="col s4">
+                            <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" />
+                        </div>
+                        <div className="col s4">
+                            <Field title="Volume" type="text" name="volume" />
+                        </div>
+                        <div className="col s4">
+                            <Field title="Peso" type="text" name="peso" />
+                        </div>
+                        <Field title="itemId" type="hidden" name="itemId" />
                     </div>
             </Form>
         </div>
     );
 };
 
-// Necessário preencher a tabela com dados vindos do banco e configurar ações dos botões Editar/Excluir
-const ItemsTable = ({items}) => {
-    return (
-        <TableCRUD data={items}/>
-    )
-}
-
 const Items = (props) => {
+    const formRef = React.useRef();
+    
     const [items, setItems] = useState([]);
     const [groupItems, setGroupItems] = useState([]);
 
-    const fetchData = async () => {
-        const _items = await Api.Fretz.Item.getAll();
+    const fetchGroupItems = async () => {
         const _groupItems = await Api.Fretz.GroupItem.getAll();
-        setItems(_items);
         setGroupItems(_groupItems);
     };
 
+    const fetchItems = async () => {
+        const _items = await Api.Fretz.Item.getAll();
+        setItems(_items);
+    }
+
+    const actions = [
+        {
+            description: "Editar", 
+            icon: "edit", 
+            onClick: (values) => formRef.current && formRef.current.resetForm({values}),
+        },
+        {
+            description: "Excluir", 
+            icon: "delete_outline",
+            onClick: (props) => {
+                ModalConfirm(`Você deseja excluir o item ${props.descricao}?`, async () => {
+                    try {
+                        await Api.Fretz.Item.delete(props.id);
+                        await fetchItems();
+                    } catch (e) {
+                        UiMsg.error({message: 'Ocorreu um erro ao tentar excluir o item'});
+                    }
+                })
+            },
+        },
+    ];
+
     useEffect(() => {
-        fetchData();
+        fetchItems();
+        fetchGroupItems();
     }, []);
 
     return (
         <React.Fragment>
             <div>
-                <ItemsForm updateData={fetchData} groupItems={groupItems}/>
+                <ItemsForm updateData={fetchItems} 
+                           groupItems={groupItems}
+                           formRef={formRef}/>
             </div>
             <div>
-                <ItemsTable items={items}/>
+                <TableCRUD data={items} actions={actions}/>
             </div>
         </React.Fragment>
     )

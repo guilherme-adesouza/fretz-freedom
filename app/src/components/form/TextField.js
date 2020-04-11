@@ -13,12 +13,12 @@ const TextField = ({
     const holder = placeholder || title;
     if (type === "textarea") {
         return (
-            <textarea placeholder={holder} {...field} {...props}/>
+            <textarea className={`validate ${className}`}  placeholder={holder} {...field} {...props}/>
         );
     }
     return (
-        <input className="validate" type={type} {...field} />
-);
+        <input className={`validate ${className}`} type={type} {...field} />
+    );
 };
 
 export default TextField;

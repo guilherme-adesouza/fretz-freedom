@@ -1,7 +1,6 @@
 import './App.css';
 
-import React, { useEffect } from 'react';
-import * as M from "materialize-css";
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch

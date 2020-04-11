@@ -1,6 +1,5 @@
 import "components/commons/UiMsg.css"
 import M from "materialize-css"
-import React from "react";
 
 class UiMsg {
     static error({message = '', error = ''}) {
