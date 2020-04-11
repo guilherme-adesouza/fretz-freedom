@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import * as M from "materialize-css";
 
 function buildLabel({label, option, joiner = ' - '}){
     if(typeof label === 'object') {
@@ -34,10 +35,20 @@ const SelectField = ({
                            form,
                            ...props
                        }) => {
+    const ref = useRef(null);
     const opts = arrayToOptions(options, keys);
     const {onChange, ...fieldProps} = field;
+
+    useEffect(() => {
+        if (!!ref) {
+            M.FormSelect.init(ref.current, {});
+        }
+    }, [options]);
+
     return (
-        <select {...props}
+        <select ref={ref}
+                className={className}
+                {...props}
                 {...fieldProps}
                 onChange={(e) => {
                     if(customChange) customChange(e);

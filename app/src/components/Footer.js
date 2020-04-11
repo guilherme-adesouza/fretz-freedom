@@ -3,8 +3,8 @@ import Icon from 'components/commons/Icon';
 
 const Footer = () => {
     return (
-        <footer class="page-footer">
-            <div class="container">
+        <footer className="page-footer">
+            <div className="container">
                 <div id="footer-top-content">
                     <b>© Copyright 2020 Fretz & Freedom</b>
                 </div>

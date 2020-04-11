@@ -1,0 +1,4 @@
+table td.table-actions {
+    display: flex;
+    justify-content: flex-start;
+}

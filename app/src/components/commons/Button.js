@@ -9,8 +9,8 @@ const Button = ({
                 }) => {
     return (
         <button className={`btn waves-effect waves-light ${className}`} {...props}>
-            {label}
             {children}
+            {label}
         </button>
     )
 };

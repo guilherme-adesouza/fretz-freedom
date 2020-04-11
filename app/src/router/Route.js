@@ -21,7 +21,6 @@ export const PrivateComponent = ({
             try {
                 const {user} = await Api.Fretz.User.verifyAuth();
                 let isAuthenticated = !!user && adminRoute ? user.admin : true;
-                console.log(adminRoute, user);
                 setState({
                     loading: false,
                     isLogged: !!user,

@@ -19,3 +19,16 @@ main {
     text-align: center;
     padding: 10px;
 }
+
+/*MATERIALIZE-CSS overrides*/
+
+.input-field > label,
+.drag-target {
+    pointer-events: none;
+}
+
+/*THEME CSS*/
+.theme-bgc {
+    background-color: var(--main-bg-color);
+    color: #fff;
+}

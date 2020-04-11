@@ -1,13 +1,30 @@
-import React, {useEffect, useRef, useState} from "react";
+import "components/SideBar.css";
+import React, {useEffect, useRef} from "react";
+import {Link} from "react-router-dom";
 import M from "materialize-css";
+
 import Icon from "components/commons/Icon";
 
+
+const SIDE_LINKS = {
+    "GROUP_ITEMS": {
+        label: "Grupos de Itens",
+        link: "/item/groups"
+    },
+    "ITEMS": {
+        label: "Itens",
+        link: "/items"
+    }
+};
 
 const SideBar = (props) => {
     const sidenav = useRef(null);
 
     useEffect(() => {
         M.Sidenav.init(sidenav.current);
+        return () => {
+            M.Sidenav.getInstance(sidenav.current).destroy();
+        }
     }, []);
 
     return (
@@ -18,23 +35,23 @@ const SideBar = (props) => {
             <ul id="slide-out" className="sidenav" ref={sidenav}>
                 <li>
                     <div className="user-view">
-                        <div className="background">
-                            <img src="images/office.jpg"/>
-                        </div>
-                        <a href="#user"><img className="circle" src="images/yuna.jpg"/></a>
+                        <div className="background" style={{backgroundColor: "var(--main-bg-color)"}}/>
                         <a href="#name"><span className="white-text name">John Doe</span></a>
                         <a href="#email"><span className="white-text email">jdandturk@gmail.com</span></a>
                     </div>
                 </li>
-                <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
-                <li><a href="#!">Second Link</a></li>
-                <li><a href="/itemgroups">Grupos de Itens</a></li>
-                <li><a href="/items">Itens</a></li>
+                {Object.values(SIDE_LINKS).map((sideLink, idx) => {
+                    return (
+                        <li key={idx}>
+                            <Link to={sideLink.link}>
+                                {sideLink.label}
+                            </Link>
+                        </li>
+                    )
+                })}
                 <li>
                     <div className="divider"></div>
                 </li>
-                <li><a className="subheader">Subheader</a></li>
-                <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
             </ul>
         </>
     )

@@ -9,7 +9,7 @@ const routes = [
         component: Home
     },
     {
-        path: '/itemgroups',
+        path: '/item/groups',
         component: ItemGroups
     },
     {

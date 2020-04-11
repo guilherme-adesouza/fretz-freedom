@@ -59,7 +59,7 @@ class BaseController {
 
 		if (Validator.idRequest(id, next)) {
 			const result = await this.service.delete(id);
-			if (Validator.queryResult(result)) {
+			if (Validator.queryResult(result, next)) {
 				res.status(200).send({message: "Delete successfully"});
 			}
 		}

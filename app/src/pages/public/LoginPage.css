@@ -1,0 +1,10 @@
+.LoginPage {
+    margin: 0;
+    height: 100vh;
+}
+
+.LoginPage.row > .col.s6 {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
