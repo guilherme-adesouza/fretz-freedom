@@ -68,6 +68,14 @@ class BaseController {
 	isValidObject(obj) {
 		return true;
 	}
+
+	isValidSchema(Schema, obj) {
+		try {
+			const valid = Schema.validateSync(obj, { stripUnknown: true });
+			return Object.values(valid).length !== 0;
+		} catch (e) { }
+		return false;
+	}
 }
 
 module.exports = BaseController;

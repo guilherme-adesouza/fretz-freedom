@@ -9,11 +9,7 @@ class ItemGroupController extends BasicController {
 	}
 
 	isValidObject(obj) {
-		try {
-			const valid = ItemGroupSchema.validateSync(obj, { stripUnknown: true });
-			return Object.values(valid).length !== 0;
-		} catch (e) { }
-		return false;
+		return super.isValidSchema(ItemGroupSchema, obj);
 	}
 }
 
