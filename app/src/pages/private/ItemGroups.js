@@ -19,7 +19,7 @@ const ItemGroupSchema = yup(yup => {
 const ItemGroupsForm = ({updateData, formRef}) => {
 
     const createItemGroup = async (values, actions) => {
-        const isEdit = !!values.id && values.id != 0;
+        const isEdit = !!values.id && values.id !== 0;
         try {
             if (isEdit) {
                 await Api.Fretz.GroupItem.update(values.id, values);

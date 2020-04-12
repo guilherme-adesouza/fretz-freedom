@@ -13,20 +13,20 @@ import Api from "service/Api";
 const ItemSchema = yup(yup => {
     return yup.object().shape({
         id: yup.number().default(0),
-        descricao: yup.string().required().default(''),
-        unidade_medida: yup.string().required().default('UN'),
-        grupo_item_id: yup.number().required().default(0),
-        valor_custo: yup.number().required().default(0),
-        valor_venda: yup.number().required().default(0),
-        volume: yup.number().required().default(0),
-        peso: yup.number().required().default(0),
+        descricao: yup.string().required('Campo obrigatório!').default(''),
+        unidade_medida: yup.string().required('Campo obrigatório!').default('UN'),
+        grupo_item_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
+        valor_custo: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
+        valor_venda: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
+        volume: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
+        peso: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
     })
 });
 
 const ItemsForm = ({updateData, groupItems, formRef}) => {
 
     const createItem = async (values, actions) => {
-        const isEdit = !!values.id && values.id != 0;
+        const isEdit = !!values.id && values.id !== 0;
         try {
             values.quantidade = 0;
             if (isEdit) {
@@ -49,6 +49,7 @@ const ItemsForm = ({updateData, groupItems, formRef}) => {
                 innerRef={formRef}
                 id="items-form"
                 initialValues={ItemSchema.default()}
+                validationSchema={ItemSchema}
                 onSubmit={createItem}
                 defaultActionButtons={true}>
                     <span className="card-title center-align">Cadastro de Itens</span>
