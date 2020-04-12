@@ -1,6 +1,6 @@
 import "components/NavBar.css";
 import React from "react";
-import logo from '../imgs/logomini.png';
+import logo from "../imgs/logomini.png";
 import SideBar from "components/SideBar";
 
 const NavBarContainer = (props) => {

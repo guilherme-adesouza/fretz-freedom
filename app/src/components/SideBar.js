@@ -14,6 +14,10 @@ const SIDE_LINKS = {
     "ITEMS": {
         label: "Itens",
         link: "/items"
+    },
+    "VEHICLES": {
+        label: "Veículos",
+        link: "/vehicles"
     }
 };
 
