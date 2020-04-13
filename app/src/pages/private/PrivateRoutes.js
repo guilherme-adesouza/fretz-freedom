@@ -3,6 +3,7 @@ import Home from 'pages/private/HomePage';
 import ItemGroups from 'pages/private/ItemGroups';
 import Items from 'pages/private/Items';
 import Vehicles from 'pages/private/Vehicles';
+import Region from 'pages/private/Region';
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/vehicles',
         component: Vehicles
+    },
+    {
+        path: '/region',
+        component: Region
     }
 ];
 
