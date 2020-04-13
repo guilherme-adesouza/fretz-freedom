@@ -18,6 +18,10 @@ const SIDE_LINKS = {
     "VEHICLES": {
         label: "Veículos",
         link: "/vehicles"
+    },
+    "REGION": {
+        label: "Regiões",
+        link: "/region"
     }
 };
 
