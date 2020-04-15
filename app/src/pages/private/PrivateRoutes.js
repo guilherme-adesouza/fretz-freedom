@@ -9,27 +9,33 @@ import Client from 'pages/private/Clients';
 const routes = [
     {
         path: '/home',
-        component: Home
+        breadcrumbTitle: 'Página Inicial',
+        component: Home,
     },
     {
         path: '/item/groups',
-        component: ItemGroups
+        breadcrumbTitle: 'Grupo de Itens',
+        component: ItemGroups,
     },
     {
         path: '/items',
-        component: Items
+        breadcrumbTitle: 'Itens',
+        component: Items,
     },
     {
         path: '/vehicles',
-        component: Vehicles
+        breadcrumbTitle: 'Veículos',
+        component: Vehicles,
     },
     {
         path: '/region',
-        component: Region
+        breadcrumbTitle: 'Regiões',
+        component: Region,
     },
     {
         path: '/client',
-        component: Client
+        breadcrumbTitle: 'Clientes',
+        component: Client,
     }
 ];
 
