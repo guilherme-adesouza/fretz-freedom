@@ -22,6 +22,10 @@ const SIDE_LINKS = {
     "REGION": {
         label: "Regiões",
         link: "/region"
+    },
+    "CLIENT": {
+        label: "Clientes",
+        link: "/client"
     }
 };
 

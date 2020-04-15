@@ -4,6 +4,7 @@ import ItemGroups from 'pages/private/ItemGroups';
 import Items from 'pages/private/Items';
 import Vehicles from 'pages/private/Vehicles';
 import Region from 'pages/private/Region';
+import Client from 'pages/private/Clients';
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
     {
         path: '/region',
         component: Region
+    },
+    {
+        path: '/client',
+        component: Client
     }
 ];
 
