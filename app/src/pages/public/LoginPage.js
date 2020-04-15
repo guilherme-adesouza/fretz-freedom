@@ -7,7 +7,7 @@ const LoginPage = (props) => {
     return (
         <div className="LoginPage row">
             <header className="theme-bgc header col s6 center">
-                <img src={logo} alt="logo" width="110%"></img>
+                <img src={logo} alt="logo" width="100%"></img>
             </header>
             <div className="col s6 container">
                 <Login {...props}/>
