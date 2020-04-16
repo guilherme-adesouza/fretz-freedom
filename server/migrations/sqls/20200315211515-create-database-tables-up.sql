@@ -78,7 +78,7 @@ CREATE TABLE  "pessoa" (
   "cpf_cnpj" VARCHAR(18) NOT NULL,
   "data_nascimento" VARCHAR(10),
   "cnh" VARCHAR(50),
-  "tefelone" VARCHAR(20) NOT NULL,
+  "telefone" VARCHAR(20) NOT NULL,
   "situacao" CHAR(2),
   "email" VARCHAR(150),
   "rua" VARCHAR(200) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE  "pessoa" (
   "tipo_pessoa_id" INT NOT NULL REFERENCES "tipo_pessoa" ("id"),
   "cidade_cod" INT NOT NULL REFERENCES "cidade" ("cod_cidade"),
   "latitude" DOUBLE PRECISION NOT NULL,
-  "longetude" DOUBLE PRECISION NOT NULL
+  "longitude" DOUBLE PRECISION NOT NULL
 );
 
 
