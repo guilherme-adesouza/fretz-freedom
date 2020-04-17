@@ -30,7 +30,12 @@ const SIDE_LINKS = {
     "ORDER": {
         label: "Pedidos",
         link: "/order"
-    }
+
+    },
+    "VIAGEM": {
+        label: "Viagens",
+        link: "/viagem"
+    },    
 };
 
 const SideBar = (props) => {
