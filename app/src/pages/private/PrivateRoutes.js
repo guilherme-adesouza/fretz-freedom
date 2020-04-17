@@ -5,7 +5,9 @@ import Items from 'pages/private/Items';
 import Vehicles from 'pages/private/Vehicles';
 import Region from 'pages/private/Region';
 import Client from 'pages/private/Clients';
+import Order from 'pages/private/Orders';
 import Viagem from 'pages/private/Viagem';
+
 
 const routes = [
     {
@@ -15,7 +17,7 @@ const routes = [
     },
     {
         path: '/item/groups',
-        breadcrumbTitle: 'Grupo de Itens',
+        breadcrumbTitle: 'Grupos de Itens',
         component: ItemGroups,
     },
     {
@@ -39,10 +41,15 @@ const routes = [
         component: Client,
     },
     {
+        path: '/order',
+        breadcrumbTitle: 'Pedidos',
+        component: Order,
+    },
+    {
         path: '/viagem',
         breadcrumbTitle: 'Viagem',
         component: Viagem,
-    }
+    },
 ];
 
 export default {component: PrivateRoute, routes};

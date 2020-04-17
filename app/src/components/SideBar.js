@@ -27,10 +27,15 @@ const SIDE_LINKS = {
         label: "Clientes",
         link: "/client"
     },
+    "ORDER": {
+        label: "Pedidos",
+        link: "/order"
+
+    },
     "VIAGEM": {
         label: "Viagens",
         link: "/viagem"
-    }
+    },    
 };
 
 const SideBar = (props) => {
