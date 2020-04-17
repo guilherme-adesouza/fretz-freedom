@@ -56,14 +56,6 @@ const UserForm = () => {
 const CreateUserPage = (props) => {
     return (
         <React.Fragment>
-            <nav className="breadcrumb-nav">
-                <div className="nav-wrapper">
-                    <div className="col s12">
-                        <a href="/home" className="breadcrumb">Home</a>
-                        <a href="/admin/user/create" className="breadcrumb">Criar Usuários</a>
-                    </div>
-                </div>
-            </nav>
             <div>
                 <UserForm />
             </div>

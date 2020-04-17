@@ -84,7 +84,7 @@ const ClientForm = ({updateData, tipoClient, cidade, formRef}) => {
                             <Field title="Rua" type="text" name="rua" />
                         </div>
                         <div className="col s4">
-                            <Field title="Cep" type="text" name="cep" />
+                            <Field title="CEP" type="text" name="cep" />
                         </div>
                         <div className="col s4">
                             <Field title="Complemento" type="text" name="complemento" />

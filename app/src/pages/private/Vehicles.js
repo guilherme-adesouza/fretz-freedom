@@ -20,7 +20,7 @@ const VehicleSchema = yup(yup => {
         tara: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         cor: yup.string().default(''),
         tipo_veiculo_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
-        situacao: yup.string().required().default('AT'),
+        situacao: yup.string().default('AT'),
         capacidade_volume: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         compartimento: yup.number().required('Campo obrigatório!').default(1).typeError('Informe um valor numérico!'),
     })

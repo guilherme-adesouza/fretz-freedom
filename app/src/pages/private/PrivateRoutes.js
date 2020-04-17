@@ -5,32 +5,51 @@ import Items from 'pages/private/Items';
 import Vehicles from 'pages/private/Vehicles';
 import Region from 'pages/private/Region';
 import Client from 'pages/private/Clients';
+import Order from 'pages/private/Orders';
+import Viagem from 'pages/private/Viagem';
+
 
 const routes = [
     {
         path: '/home',
-        component: Home
+        breadcrumbTitle: 'Página Inicial',
+        component: Home,
     },
     {
         path: '/item/groups',
-        component: ItemGroups
+        breadcrumbTitle: 'Grupos de Itens',
+        component: ItemGroups,
     },
     {
         path: '/items',
-        component: Items
+        breadcrumbTitle: 'Itens',
+        component: Items,
     },
     {
         path: '/vehicles',
-        component: Vehicles
+        breadcrumbTitle: 'Veículos',
+        component: Vehicles,
     },
     {
         path: '/region',
-        component: Region
+        breadcrumbTitle: 'Regiões',
+        component: Region,
     },
     {
         path: '/client',
-        component: Client
-    }
+        breadcrumbTitle: 'Clientes',
+        component: Client,
+    },
+    {
+        path: '/order',
+        breadcrumbTitle: 'Pedidos',
+        component: Order,
+    },
+    {
+        path: '/viagem',
+        breadcrumbTitle: 'Viagem',
+        component: Viagem,
+    },
 ];
 
 export default {component: PrivateRoute, routes};
