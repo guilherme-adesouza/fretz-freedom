@@ -26,6 +26,10 @@ const SIDE_LINKS = {
     "CLIENT": {
         label: "Clientes",
         link: "/client"
+    },
+    "ORDER": {
+        label: "Pedidos",
+        link: "/order"
     }
 };
 
