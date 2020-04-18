@@ -102,7 +102,7 @@ CREATE TABLE  "viagem" (
   "data_final" TIMESTAMP NULL,
   "veiculo_id" INT NOT NULL REFERENCES "veiculo" ("id"),
   "motorista_id" INT NOT NULL REFERENCES "pessoa" ("id"),
-  "despesa" VARCHAR(30),
+  "despesa" DECIMAL(10, 2),
   "situacao" CHAR(2)
 );
 
