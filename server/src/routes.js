@@ -7,7 +7,7 @@ const vehicleRouter = require('./components/vehicle/vehicleAPI');
 const tokenRouter = require('./components/token/tokenAPI');
 const regionRouter = require('./components/region/regionAPI');
 const personRouter = require('./components/person/personAPI');
-//const orderRouter = require('./components/order/orderAPI');
+const orderRouter = require('./components/order/orderAPI');
 
 // available API versions
 const routes = express.Router();
@@ -19,6 +19,6 @@ routes.use('/vehicle', vehicleRouter);
 routes.use('/token', tokenRouter);
 routes.use('/region', regionRouter);
 routes.use('/person', personRouter);
-//routes.use('/order', orderRouter);
+routes.use('/order', orderRouter);
 
 module.exports = routes;
