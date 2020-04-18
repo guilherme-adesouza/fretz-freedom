@@ -4,14 +4,14 @@ import {Field, ErrorMessage} from 'formik';
 
 import TextField from 'components/form/TextField';
 import SelectField from 'components/form/SelectField';
-import DateField from 'components/form/DateField';
+import MultiSelect from 'components/form/MultiSelect';
 
 const COMPONENTS = {
     "text": TextField,
     "textarea": TextField,
     "password": TextField,
     "select": SelectField,
-    "date": DateField,
+    "select multiple": MultiSelect
 };
 
 const InputWrapper = ({
