@@ -63,7 +63,7 @@ CREATE TABLE  "cidade" (
   "cod_cidade" SERIAL PRIMARY KEY,
   "nome" VARCHAR(200) NOT NULL,
   "situacao" CHAR(2),
-  "estado_cod_estado" INT NOT NULL REFERENCES "estado" ("cod_estado"),
+  "estado_cod_estado" INT NOT NULL REFERENCES "estado" ("cod_estado") ON DELETE CASCADE,
   "cep" VARCHAR(9),
   "regiao_id" INT NULL REFERENCES "regiao" ("id")
 );

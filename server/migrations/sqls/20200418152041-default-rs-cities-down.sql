@@ -1,0 +1,1 @@
+DELETE FROM estado WHERE cod_estado = 22;
