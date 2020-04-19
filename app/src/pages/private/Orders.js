@@ -13,7 +13,7 @@ import Api from "service/Api";
 const OrderSchema = yup(yup => {
     return yup.object().shape({
         id: yup.number().default(0),
-        data_inicial: yup.date().required('Campo obrigatório').default(() => (new Date())),
+        data_inicial: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
         valor: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         situacao: yup.string().default('AT'),
         observacao: yup.string().default(''),
@@ -24,7 +24,6 @@ const OrderSchema = yup(yup => {
         bairro: yup.string().required('Campo obrigatório!').default(''),
         pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         categoria_pedido_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
-        item_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         data_entrega: yup.date().default(() => (new Date()))
     })
 });
@@ -98,13 +97,13 @@ const OrdersForm = ({updateData, clients, orderCategories, items, formRef}) => {
                                     options={clients}
                                     keys={{value: "id", label: "nome"}}
                                     type="select"
-                                    name="categoria_pedido_id" />
+                                    name="pessoa_id" />
                         </div>
                         <div className="col s4">
                             <Field title="Item"
                                     options={items}
                                     keys={{value: "id", label: "descricao"}}
-                                    type="select"
+                                    type="select multiple"
                                     name="item_id" />
                         </div>
                         <Field title="orderId" type="hidden" name="orderId" />
@@ -133,7 +132,7 @@ const Orders = (props) => {
     };
 
     const fetchClients = async () => {
-        const _clients = await Api.Fretz.Client.getAll();
+        const _clients = await Api.Fretz.Person.getAll();
         setClients(_clients);
     };
 

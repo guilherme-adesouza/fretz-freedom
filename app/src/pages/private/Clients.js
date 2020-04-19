@@ -15,7 +15,7 @@ const ClientSchema = yup(yup => {
         id: yup.number().default(0),
         nome: yup.string().required('Campo obrigatório!').default(''),
         cpf_cnpj: yup.number().required('Campo obrigatório').default('').typeError('Informe somente números!'),
-        data_nascimento: yup.string().default('').typeError('DD/MM/AAAA'),
+        data_nascimento: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
         cnh: yup.number().default('').typeError('Informe um valor numérico!'),
         tefelone: yup.number().required('Campo obrigatório!').default('').typeError('Informe um valor numérico!'),
         situacao: yup.string().required().default('AT'),
@@ -28,7 +28,7 @@ const ClientSchema = yup(yup => {
         tipo_pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         cidade_cod: yup.number().required('Campo obrigatório!').default(1).typeError('Selecione uma opção!'),
         latitude: yup.number().required('Campo obrigatório!').default(0).typeError('Informe somente números!'),
-        longetude: yup.number().required('Campo obrigatório!').default(0).typeError('Informe somente números!'),
+        longitude: yup.number().required('Campo obrigatório!').default(0).typeError('Informe somente números!'),
     })
 });
 
@@ -69,7 +69,7 @@ const ClientForm = ({updateData, tipoClient, cidade, formRef}) => {
                             <Field title="CPF / CNPJ" type="text" name="cpf_cnpj" />
                         </div>
                         <div className="col s4">
-                            <Field title="Data Nascimento" type="text" name="data_nascimento" />
+                            <Field title="Data Nascimento" type="date" name="data_nascimento" />
                         </div>
                         <div className="col s4">
                             <Field title="CNH" type="text" name="cnh" />
@@ -106,7 +106,7 @@ const ClientForm = ({updateData, tipoClient, cidade, formRef}) => {
                             <Field title="Latitude" type="text" name="latitude" />
                         </div>
                         <div className="col s4">
-                            <Field title="Longetude" type="text" name="longetude" />
+                            <Field title="Longitude" type="text" name="longitude" />
                         </div>
                         <div className="col s4">
                             <Field title="Tipo de Cliente"
@@ -140,8 +140,8 @@ const Client = (props) => {
     }
 
     const fetchCidade = async () => {
-        //const _cidade = await Api.Fretz.City.getAll();
-        //setClient(_cidade);
+        // const _cidade = await Api.Fretz.City.getAll();
+        // setClient(_cidade);
     }
 
     const actions = [

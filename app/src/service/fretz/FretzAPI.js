@@ -7,7 +7,6 @@ import RegionAPI from "service/fretz/RegionAPI";
 import VehicleAPI from "service/fretz/VehicleAPI";
 import VehicleTypeAPI from "service/fretz/VehicleTypeAPI";
 import OrderCategoryAPI from "service/fretz/OrderCategoryAPI";
-import ClientAPI from "service/fretz/ClientAPI";
 import OrderAPI from "service/fretz/OrderAPI";
 import PersonAPI from "service/fretz/PersonAPI";
 import PersonTypeAPI from "service/fretz/PersonTypeAPI";
@@ -25,7 +24,6 @@ class FretzAPI {
     static Vehicle = new VehicleAPI();
     static VehicleType = new VehicleTypeAPI();
     static OrderCategory = new OrderCategoryAPI();
-    static Client = new ClientAPI();
     static Order = new OrderAPI();
     static Person = new PersonAPI();
     static PersonType = new PersonTypeAPI();

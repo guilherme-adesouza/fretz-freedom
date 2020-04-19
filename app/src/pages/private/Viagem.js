@@ -14,7 +14,7 @@ const ViagemSchema = yup(yup => {
     return yup.object().shape({
         id: yup.number().default(0),
         situacao: yup.string().required().default('AT'),
-        data_inicial: yup.date().required('Campo obrigatório!').default('').typeError('Data inválida!'),
+        data_inicial: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
         data_final: yup.string().default(''),
         vehicle_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         clients_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
@@ -54,7 +54,7 @@ const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
                     <span className="card-title center-align">Cadastro de Viagem</span>
                     <div className="row">
                         <div className="col s4">
-                            <Field title="Data Inicial" type="text" name="data_inicial" />
+                            <Field title="Data Inicial" type="date" name="data_inicial" />
                         </div>
                         <div className="col s4">
                             <Field title="Motorista"
