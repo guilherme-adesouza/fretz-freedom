@@ -38,10 +38,11 @@ const Login = ({
     return (
         <div style={{margin: 'auto'}} className="valign-wrapper row login-box">
             <Form id="login-form"
+                  style={{width: "100%"}}
                   initialValues={LoginSchema.default()}
                   onSubmit={attemptLogin}>
                 <div className="card-content">
-                    <span className="card-title center-align">Fretz & Freedom - Login</span>
+                    <span className="card-title center-align">Login</span>
                     <div className="row">
                         <div className="col s12">
                             <Field title="E-mail"
