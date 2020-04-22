@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = (props) => {
+const RoutingPage = (props) => {
     return (
         <div>
             <h2></h2>
@@ -8,4 +8,4 @@ const HomePage = (props) => {
     )
 };
 
-export default HomePage;
+export default RoutingPage;

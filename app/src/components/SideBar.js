@@ -45,6 +45,10 @@ const OPERATION_SIDE_LINKS = {
             label: "Viagens",
             link: "/travel"
         },
+        "ROUTES": {
+            label: "Roteirização",
+            link: "/routes"
+        },
     }
 };
 

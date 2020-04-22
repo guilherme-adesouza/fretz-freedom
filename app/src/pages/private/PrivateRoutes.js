@@ -7,6 +7,7 @@ import Region from 'pages/private/Region';
 import Client from 'pages/private/Clients';
 import Order from 'pages/private/Orders';
 import Travel from 'pages/private/Travel';
+import Routing from "pages/private/Routing";
 
 
 const routes = [
@@ -49,6 +50,11 @@ const routes = [
         path: '/travel',
         breadcrumbTitle: 'Viagem',
         component: Travel,
+    },
+    {
+        path: '/routes',
+        breadcrumbTitle: 'Roteirização',
+        component: Routing,
     },
 ];
 

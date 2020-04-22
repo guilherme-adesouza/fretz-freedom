@@ -20,7 +20,7 @@ const BreadcrumbsItem = (props) => {
             if (!!actualRoute) return actualRoute.breadcrumbTitle;
         }
         return '';
-    }
+    };
     const title = getTitle();
 
     return (
