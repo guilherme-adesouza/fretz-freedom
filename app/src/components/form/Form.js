@@ -5,6 +5,7 @@ import {Form, Formik} from "formik";
 const FormWrapper = ({
                           id,
                           className = '',
+                          style = {},
                           initialValues = {},
                           innerRef = null,
                           defaultActionButtons = false,
@@ -13,7 +14,7 @@ const FormWrapper = ({
                           ...props
                       }) => {
     return (
-        <div id={id} style={{margin: '20px auto 0'}} className={`container row card ${className}`}>
+        <div id={id} style={{margin: '20px auto 0', ...style}} className={`container row card ${className}`}>
             <Formik
                 innerRef={innerRef}
                 initialValues={initialValues}

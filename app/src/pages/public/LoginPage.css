@@ -8,3 +8,9 @@
     align-items: center;
     height: 100vh;
 }
+
+.img-logo-wrapper {
+    max-width: 70vh;
+    margin: auto;
+    width: 100%;
+}

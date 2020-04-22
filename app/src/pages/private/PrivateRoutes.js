@@ -6,7 +6,7 @@ import Vehicles from 'pages/private/Vehicles';
 import Region from 'pages/private/Region';
 import Client from 'pages/private/Clients';
 import Order from 'pages/private/Orders';
-import Viagem from 'pages/private/Viagem';
+import Travel from 'pages/private/Travel';
 
 
 const routes = [
@@ -46,9 +46,9 @@ const routes = [
         component: Order,
     },
     {
-        path: '/viagem',
+        path: '/travel',
         breadcrumbTitle: 'Viagem',
-        component: Viagem,
+        component: Travel,
     },
 ];
 

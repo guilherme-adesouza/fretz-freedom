@@ -80,7 +80,7 @@ const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
     );
 };
 
-const Viagem = (props) => {
+const Travel = (props) => {
     const formRef = React.useRef();
     
     const [viagem, setViagem] = useState([]);
@@ -145,4 +145,4 @@ const Viagem = (props) => {
     )
 };
 
-export default Viagem;
+export default Travel;

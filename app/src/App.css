@@ -20,11 +20,21 @@ main {
     padding: 10px;
 }
 
+.flex-center-btw {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /*MATERIALIZE-CSS overrides*/
 
 .input-field > label,
 .drag-target {
     pointer-events: none;
+}
+
+.card .card-content .card-title {
+    margin-bottom: 30px;
 }
 
 /*THEME CSS*/

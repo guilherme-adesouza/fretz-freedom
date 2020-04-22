@@ -6,6 +6,7 @@
 }
 
 .breadcrumb {
+    font-size: 20px;
     color: rgb(68, 49, 49);
     text-transform: capitalize;
 }
@@ -13,4 +14,8 @@
 .breadcrumb:hover {
     color: rgb(77, 97, 82);
     text-decoration: underline;
+}
+
+li.breadcrumb-active {
+    margin-left: 5%;
 }
