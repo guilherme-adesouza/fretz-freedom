@@ -5,6 +5,7 @@ const {
 	DEFAULT_DB, DB_USER, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT
 } = process.env;
 
+console.log('process.env', process.env);
 
 const Config = {
 	'APP': {

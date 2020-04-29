@@ -22,7 +22,10 @@ async function executeMigrations(fn) {
 		await dbmStart.createDatabase(DATABASE.NAME);
 	} catch (e) {
 	}
-	await dbmEnterprise.up();
+	try {
+		await dbmEnterprise.up();
+	}catch (e) {
+	}
 	fn();
 }
 
