@@ -27,12 +27,12 @@ const ClientSchema = yup(yup => {
         bairro: yup.string().required('Campo obrigatório!').default(''),
         tipo_pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         cidade_cod: yup.number().required('Campo obrigatório!').default(1).typeError('Selecione uma opção!'),
-        latitude: yup.number().required('Campo obrigatório!').default(0).typeError('Informe somente números!'),
-        longitude: yup.number().required('Campo obrigatório!').default(0).typeError('Informe somente números!'),
+        latitude: yup.string().required('Campo obrigatório').default(''),
+        longitude: yup.string().required('Campo obrigatório').default(''),
     })
 });
 
-const ClientForm = ({updateData, tipoClient, cidade, formRef}) => {
+const ClientForm = ({updateData, tipoClient, cities, formRef}) => {
 
     const createClient = async (values, actions) => {
         const isEdit = !!values.id && values.id !== 0;
@@ -97,8 +97,8 @@ const ClientForm = ({updateData, tipoClient, cidade, formRef}) => {
                         </div>
                         <div className="col s4">
                             <Field title="Cidade"
-                                    options={tipoClient}
-                                    keys={{value: "id", label: "descricao"}}
+                                    options={cities}
+                                    keys={{value: "cod_cidade", label: "nome"}}
                                     type="select"
                                     name="cidade_cod" />
                         </div>
@@ -127,7 +127,7 @@ const Client = (props) => {
     
     const [client, setClient] = useState([]);
     const [tipoClient, setTipoClient] = useState([]);
-    const [cidade, setCidade] = useState([]);
+    const [cities, setCities] = useState([]);
 
     const fetchTipoClient = async () => {
         const _tipoClient = await Api.Fretz.PersonType.getAll();
@@ -139,9 +139,9 @@ const Client = (props) => {
         setClient(_client);
     }
 
-    const fetchCidade = async () => {
-        // const _cidade = await Api.Fretz.City.getAll();
-        // setClient(_cidade);
+    const fetchCities = async () => {
+        // const _cities = await Api.Fretz.City.getAll();
+        // setCities(_cities);
     }
 
     const actions = [
@@ -169,7 +169,7 @@ const Client = (props) => {
     useEffect(() => {
         fetchClient();
         fetchTipoClient();
-        fetchCidade();
+        fetchCities();
     }, []);
 
     return (
@@ -177,7 +177,7 @@ const Client = (props) => {
             <div>
                 <ClientForm updateData={fetchClient} 
                            tipoClient={tipoClient}
-                           cidade={cidade}
+                           cities={cities}
                            formRef={formRef}/>
             </div>
             <div>
