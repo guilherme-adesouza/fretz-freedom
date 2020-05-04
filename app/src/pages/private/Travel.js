@@ -14,12 +14,12 @@ const ViagemSchema = yup(yup => {
     return yup.object().shape({
         id: yup.number().default(0),
         situacao: yup.string().required().default('AT'),
-        data_inicial: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
+        data_inicial: yup.date().required('Campo obrigatório').typeError('Data inválida!'),
         data_final: yup.string().default(''),
         vehicle_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         clients_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         despesa: yup.number().default(0).typeError('Informe um valor numérico!'),
-        })
+    })
 });
 
 const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
@@ -71,7 +71,7 @@ const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
                                     name="vehicles_id" />
                         </div>
                         <div className="col s4">
-                            <Field title="Despesa" placeholder="R$ " type="text" name="despesa" />
+                            <Field title="Despesa" placeholder="R$ " type="number" name="despesa" />
                         </div>                        
                         <Field title="viagemId" type="hidden" name="viagemId" />
                     </div>

@@ -92,7 +92,7 @@ const SideBar = (props) => {
                 </li>
                 {SIDE_LINKS.map((sideNav, idx) => {
                     return (
-                        <div>
+                        <div key={idx}>
                             {idx !== 0 && <li><div className="divider"/></li>}
                             <li><a className="subheader">{sideNav.description}</a></li>
                             {Object.values(sideNav.links).map((sideLink, idx) => {
