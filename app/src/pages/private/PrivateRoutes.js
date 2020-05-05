@@ -7,7 +7,7 @@ import Region from 'pages/private/Region';
 import Client from 'pages/private/Clients';
 import Order from 'pages/private/Orders';
 import Travel from 'pages/private/Travel';
-
+import Establishment from 'pages/private/Establishment';
 
 const routes = [
     {
@@ -50,6 +50,11 @@ const routes = [
         breadcrumbTitle: 'Viagem',
         component: Travel,
     },
+    {
+        path: '/establishment',
+        breadcrumbTitle: 'Estabelecimento',
+        component: Establishment
+    }
 ];
 
 export default {component: PrivateRoute, routes};

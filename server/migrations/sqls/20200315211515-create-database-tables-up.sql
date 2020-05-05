@@ -108,16 +108,6 @@ CREATE TABLE  "viagem" (
 
 
 -- -----------------------------------------------------
--- Table "categoria_pedido"
--- -----------------------------------------------------
-CREATE TABLE  "categoria_pedido" (
-  "id" SERIAL PRIMARY KEY,
-  "descricao" VARCHAR(200) NOT NULL,
-  "situacao" CHAR(2)
-);
-
-
--- -----------------------------------------------------
 -- Table "pedido"
 -- -----------------------------------------------------
 CREATE TABLE  "pedido" (
@@ -132,7 +122,6 @@ CREATE TABLE  "pedido" (
   "numero" INT NOT NULL,
   "bairro" VARCHAR(200) NOT NULL,
   "pessoa_id" INT NOT NULL  REFERENCES "pessoa" ("id"),
-  "categoria_pedido_id" INT NOT NULL REFERENCES "categoria_pedido" ("id"),
   "data_entrega" TIMESTAMP NULL
 );
 
@@ -163,6 +152,22 @@ CREATE TABLE  "item" (
   "grupo_item_id" INT NOT NULL REFERENCES "grupo_item" ("id")
 );
 
+-- -----------------------------------------------------
+-- Table "estabelecimento"
+-- -----------------------------------------------------
+CREATE TABLE  "estabelecimento" (
+  "id" SERIAL PRIMARY KEY,
+  "nome" VARCHAR(200) NOT NULL,
+  "endereco" VARCHAR(200) NOT NULL,
+  "latitude" VARCHAR(20) NOT NULL,
+  "longitude" VARCHAR(20) NOT NULL,
+  "situacao" CHAR(2),
+  "cidade_id" INT NOT NULL REFERENCES "cidade" ("cod_cidade"),
+  "jornada" VARCHAR(20) NOT NULL,
+  "rotas_maior_duracao" BOOLEAN NOT NULL DEFAULT FALSE,
+  "agrupamento_itens_diferentes" BOOLEAN NOT NULL DEFAULT FALSE,
+  "destino" INT NOT NULL
+);
 
 -- -----------------------------------------------------
 -- Table "usuario"
@@ -175,7 +180,8 @@ CREATE TABLE "usuario" (
   "senha" VARCHAR(200) NOT NULL,
   "admin" BOOLEAN NOT NULL DEFAULT FALSE,
   "super" BOOLEAN NOT NULL DEFAULT FALSE,
-  "email" TEXT NOT NULL
+  "email" TEXT NOT NULL,
+  "estabelecimento_id" INT NOT NULL REFERENCES "estabelecimento" ("id")
 );
 
 

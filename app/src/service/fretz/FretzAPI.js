@@ -10,6 +10,7 @@ import OrderCategoryAPI from "service/fretz/OrderCategoryAPI";
 import OrderAPI from "service/fretz/OrderAPI";
 import PersonAPI from "service/fretz/PersonAPI";
 import PersonTypeAPI from "service/fretz/PersonTypeAPI";
+import EstablishmentAPI from "service/fretz/EstablishmentAPI";
 
 export const request = axios.create({
     baseURL: '/api',
@@ -27,6 +28,7 @@ class FretzAPI {
     static Order = new OrderAPI();
     static Person = new PersonAPI();
     static PersonType = new PersonTypeAPI();
+    static Establishment = new EstablishmentAPI();
 }
 
 export default FretzAPI;

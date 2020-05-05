@@ -48,9 +48,20 @@ const OPERATION_SIDE_LINKS = {
     }
 };
 
+const PARAMETERS_SIDE_LINKS = {
+    description: "Parâmetros",
+    links: {
+        "ESTABLISHMENT": {
+            label: "Estabelecimento",
+            link: "/establishment"
+        }
+    }
+};
+
 const SIDE_LINKS = [
     OPERATION_SIDE_LINKS,
     CRUD_SIDE_LINKS,
+    PARAMETERS_SIDE_LINKS
 ];
 
 const SideBar = (props) => {

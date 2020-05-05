@@ -56,7 +56,7 @@ const MultiSelect = ({
                     onChange(e);
                 }}>
             {emptyOption &&
-            <option value="" selected disabled>Selecione as opções</option>
+            <option value="" disabled>Selecione as opções</option>
             }
             {opts.map((opt, idx) =>
                 <option key={idx} value={opt.value}>{opt.label}</option>
