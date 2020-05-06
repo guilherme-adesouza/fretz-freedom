@@ -11,6 +11,7 @@ const orderRouter = require('./components/order/orderAPI');
 const stateRouter = require('./components/state/stateAPI');
 const cityRouter = require('./components/city/cityAPI');
 const travelRouter = require('./components/travel/travelAPI');
+const establishmentRouter = require('./components/establishment/establishmentAPI');
 
 // available API versions
 const routes = express.Router();
@@ -26,5 +27,6 @@ routes.use('/order', orderRouter);
 routes.use('/state', stateRouter);
 routes.use('/city', cityRouter);
 routes.use('/travel', travelRouter);
+routes.use('/establishment', establishmentRouter);
 
 module.exports = routes;

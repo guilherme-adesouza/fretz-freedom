@@ -23,12 +23,11 @@ const OrderSchema = yup(yup => {
         numero: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         bairro: yup.string().required('Campo obrigatório!').default(''),
         pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
-        categoria_pedido_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         data_entrega: yup.date().default(() => (new Date()))
     })
 });
 
-const OrdersForm = ({updateData, clients, orderCategories, items, formRef}) => {
+const OrdersForm = ({updateData, clients, items, formRef}) => {
 
     const createOrder = async (values, actions) => {
         const isEdit = !!values.id && values.id !== 0;
@@ -86,13 +85,6 @@ const OrdersForm = ({updateData, clients, orderCategories, items, formRef}) => {
                             <Field title="Complemento" type="text" name="complemento" />
                         </div>
                         <div className="col s4">
-                            <Field title="Categoria"
-                                    options={orderCategories}
-                                    keys={{value: "id", label: "descricao"}}
-                                    type="select"
-                                    name="categoria_pedido_id" />
-                        </div>
-                        <div className="col s4">
                             <Field title="Cliente"
                                     options={clients}
                                     keys={{value: "id", label: "nome"}}
@@ -117,14 +109,8 @@ const Orders = (props) => {
     const formRef = React.useRef();
     
     const [orders, setOrders] = useState([]);
-    const [orderCategories, setOrderCategories] = useState([]);
     const [items, setItems] = useState([]);
     const [clients, setClients] = useState([]);
-
-    const fetchOrderCategories = async () => {
-        const _orderCategories = await Api.Fretz.OrderCategory.getAll();
-        setOrderCategories(_orderCategories);
-    };
 
     const fetchItems = async () => {
         const _items = await Api.Fretz.Item.getAll();
@@ -165,7 +151,6 @@ const Orders = (props) => {
 
     useEffect(() => {
         fetchOrders();
-        fetchOrderCategories();
         fetchItems();
         fetchClients();
     }, []);
@@ -174,7 +159,6 @@ const Orders = (props) => {
         <React.Fragment>
             <div>
                 <OrdersForm updateData={fetchOrders} 
-                           orderCategories={orderCategories}
                            items={items}
                            clients={clients}
                            formRef={formRef}/>

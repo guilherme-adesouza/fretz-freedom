@@ -97,3 +97,15 @@ DROP TABLE IF EXISTS "pedido_has_item" CASCADE;
 -- Table "pedido_has_rota"
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS "pedido_has_rota" CASCADE;
+
+
+-- -----------------------------------------------------
+-- Table "estabelecimento"
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS "estabelecimento" CASCADE;
+
+
+-- -----------------------------------------------------
+-- Table "parametros"
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS "parametros" CASCADE;
