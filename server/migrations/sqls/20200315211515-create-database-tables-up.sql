@@ -181,7 +181,7 @@ CREATE TABLE "usuario" (
   "admin" BOOLEAN NOT NULL DEFAULT FALSE,
   "super" BOOLEAN NOT NULL DEFAULT FALSE,
   "email" TEXT NOT NULL,
-  "estabelecimento_id" INT NOT NULL REFERENCES "estabelecimento" ("id")
+  "estabelecimento_id" INT REFERENCES "estabelecimento" ("id")
 );
 
 

@@ -4,6 +4,6 @@ import Travel from './Travel';
 
 test('save button on travel page', () => {
     const {getByText} = render(<Travel/>);
-    const rightClick = { button: 2 }
+    const rightClick = { button: 2 };
     fireEvent.click(getByText('Salvar'), rightClick)
 });
