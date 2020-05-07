@@ -1,4 +1,4 @@
-const request = require('supertest');
+const request = require('	');
 const server = require('../src/server');
 
 let app;

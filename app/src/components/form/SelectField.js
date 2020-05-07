@@ -39,11 +39,11 @@ const SelectField = ({
     const opts = arrayToOptions(options, keys);
     const {onChange, ...fieldProps} = field;
 
-    useEffect(() => {
-        if (!!ref) {
-            M.FormSelect.init(ref.current, {});
-        }
-    }, [options]);
+    // useEffect(() => {
+    //     if (!!ref) {
+    //         M.FormSelect.init(ref.current, {});
+    //     }
+    // }, [options]);
 
     return (
         <select ref={ref}

@@ -37,6 +37,10 @@ main {
     margin-bottom: 30px;
 }
 
+select {
+    display: block;
+}
+
 /*THEME CSS*/
 .theme-bgc {
     background-color: var(--main-bg-color);

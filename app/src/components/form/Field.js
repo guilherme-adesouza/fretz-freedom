@@ -30,7 +30,7 @@ const InputWrapper = ({
     return (
         <div className="input-field">
             <Component id={_id} field={field} title={title} {...props}/>
-            { props.type !== 'hidden' && <label htmlFor={_id}>{title}</label> }
+            { props.type !== 'hidden' && <label className="active" htmlFor={_id}>{title}</label> }
         </div>
     )
 };
