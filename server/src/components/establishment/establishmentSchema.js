@@ -11,7 +11,7 @@ const establishmentSchema = yup.object().shape({
         jornada: yup.number().required(),
         rotas_maior_duracao: yup.boolean().required(),
         agrupamento_itens_diferentes: yup.boolean().required(),
-        destino: yup.number()       
+        destino: yup.number(),
 });
 
 module.exports = establishmentSchema;
