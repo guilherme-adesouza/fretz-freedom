@@ -11,7 +11,7 @@ import Api from "service/Api";
 
 const ItemGroupSchema = yup(yup => {
     return yup.object().shape({
-        descricao: yup.string().required().default(''),
+        descricao: yup.string().required(),
         situacao: yup.string().required().default('AT'),
     })
 });
