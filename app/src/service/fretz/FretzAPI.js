@@ -11,6 +11,8 @@ import OrderAPI from "service/fretz/OrderAPI";
 import PersonAPI from "service/fretz/PersonAPI";
 import PersonTypeAPI from "service/fretz/PersonTypeAPI";
 import EstablishmentAPI from "service/fretz/EstablishmentAPI";
+import CityAPI from "service/fretz/CityAPI";
+import TravelAPI from "service/fretz/TravelAPI";
 
 export const request = axios.create({
     baseURL: '/api',
@@ -29,6 +31,8 @@ class FretzAPI {
     static Person = new PersonAPI();
     static PersonType = new PersonTypeAPI();
     static Establishment = new EstablishmentAPI();
+    static City = new CityAPI();
+    static Travel = new TravelAPI();
 }
 
 export default FretzAPI;

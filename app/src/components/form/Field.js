@@ -5,9 +5,11 @@ import {Field, ErrorMessage} from 'formik';
 import TextField from 'components/form/TextField';
 import SelectField from 'components/form/SelectField';
 import MultiSelect from 'components/form/MultiSelect';
+import CheckboxField from 'components/form/CheckboxField';
 
 const COMPONENTS = {
     "text": TextField,
+    "checkbox": CheckboxField,
     "textarea": TextField,
     "password": TextField,
     "select": SelectField,
@@ -21,7 +23,8 @@ const InputWrapper = ({
                           ...props
                       }) => {
     const _id = id || `form_field_${field.name}`;
-    const Component = !!COMPONENTS[props.type] ? COMPONENTS[props.type] : TextField;
+    const Component = !!COMPONENTS[props.type] ? COMPONENTS[props.type] : TextField
+    const _title = !!title ? `${title} ${!!props.required ? ' *' : ''}` : null;
 
     useEffect(() => {
         M.updateTextFields();       
@@ -29,8 +32,8 @@ const InputWrapper = ({
 
     return (
         <div className="input-field">
-            <Component id={_id} field={field} title={title} {...props}/>
-            { props.type !== 'hidden' && <label className="active" htmlFor={_id}>{title}</label> }
+            <Component id={_id} field={field} title={_title} {...props}/>
+            { props.type !== 'hidden' && <label className="field-description active" htmlFor={_id}>{_title}</label> }
         </div>
     )
 };
@@ -40,7 +43,7 @@ const MyField = ({
                      name= '',
                      type = 'text',
                      title = null,
-                     required = true,
+                     required = false,
                      ...props
                  }) => {
     return (

@@ -1,0 +1,1 @@
+DELETE FROM estabelecimento WHERE nome = 'Padrão';

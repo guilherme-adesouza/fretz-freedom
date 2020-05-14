@@ -1,4 +1,3 @@
-import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
 
 import { yup } from "components/form/customYup";
@@ -55,29 +54,29 @@ const ItemsForm = ({updateData, groupItems, formRef}) => {
                     <span className="card-title center-align">Cadastro de Itens</span>
                     <div className="row">
                         <div className="col s12">
-                            <Field title="Descrição" type="text" name="descricao" />
+                            <Field title="Descrição" type="text" name="descricao" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Unid. Medida" type="text" name="unidade_medida" />
+                            <Field title="Unid. Medida" type="text" name="unidade_medida" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Grupo do Item"
                                     options={groupItems}
                                     keys={{value: "id", label: "descricao"}}
                                     type="select"
-                                    name="grupo_item_id" />
+                                    name="grupo_item_id" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Valor de Custo" placeholder="R$ " type="text" name="valor_custo" />
+                            <Field title="Valor de Custo" placeholder="R$ " type="text" name="valor_custo" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" />
+                            <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Volume" type="text" name="volume" />
+                            <Field title="Volume" type="text" name="volume" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Peso" type="text" name="peso" />
+                            <Field title="Peso" type="text" name="peso" required/>
                         </div>
                         <Field title="itemId" type="hidden" name="itemId" />
                     </div>

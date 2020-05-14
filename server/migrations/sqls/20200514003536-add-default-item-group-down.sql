@@ -1,0 +1,1 @@
+DELETE FROM grupo_item WHERE descricao = 'Genérico';

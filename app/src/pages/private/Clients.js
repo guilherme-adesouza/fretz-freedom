@@ -16,8 +16,8 @@ const ClientSchema = yup(yup => {
         nome: yup.string().required('Campo obrigatório!').default(''),
         cpf_cnpj: yup.number().required('Campo obrigatório').default('').typeError('Informe somente números!'),
         data_nascimento: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
-        cnh: yup.number().default('').typeError('Informe um valor numérico!'),
-        tefelone: yup.number().required('Campo obrigatório!').default('').typeError('Informe um valor numérico!'),
+        cnh: yup.string().default(''),
+        telefone: yup.number().required('Campo obrigatório!').default('').typeError('Informe um valor numérico!'),
         situacao: yup.string().required().default('AT'),
         email: yup.string().default(''),
         rua: yup.string().required('Campo obrigatório!').default(''),
@@ -35,6 +35,7 @@ const ClientSchema = yup(yup => {
 const ClientForm = ({updateData, tipoClient, cities, formRef}) => {
 
     const createClient = async (values, actions) => {
+        console.log('createClient');
         const isEdit = !!values.id && values.id !== 0;
         try {
             if (isEdit) {
@@ -63,56 +64,58 @@ const ClientForm = ({updateData, tipoClient, cities, formRef}) => {
                     <span className="card-title center-align">Cadastro de Cliente</span>
                     <div className="row">
                         <div className="col s12">
-                            <Field title="Nome" type="text" name="nome" />
+                            <Field title="Nome" type="text" name="nome" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="CPF / CNPJ" type="text" name="cpf_cnpj" />
+                            <Field title="CPF / CNPJ" type="text" name="cpf_cnpj" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Data Nascimento" type="date" name="data_nascimento" />
+                            <Field title="Data Nascimento" type="date" name="data_nascimento" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="CNH" type="text" name="cnh" />
+                            <Field title="CNH" type="text" name="cnh" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Telefone" type="text" name="tefelone" />
+                            <Field title="Telefone" type="text" name="telefone" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Email" type="text" name="email" />
                         </div>
                         <div className="col s4">
-                            <Field title="Rua" type="text" name="rua" />
+                            <Field title="Rua" type="text" name="rua" required />
                         </div>
                         <div className="col s4">
-                            <Field title="CEP" type="text" name="cep" />
+                            <Field title="CEP" type="text" name="cep" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Complemento" type="text" name="complemento" />
                         </div>
                         <div className="col s4">
-                            <Field title="Número" type="text" name="numero" />
+                            <Field title="Número" type="text" name="numero" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Bairro" type="text" name="bairro" />
+                            <Field title="Bairro" type="text" name="bairro" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Cidade"
                                     options={cities}
                                     keys={{value: "cod_cidade", label: "nome"}}
                                     type="select"
+                                    required
                                     name="cidade_cod" />
                         </div>
                         <div className="col s4">
-                            <Field title="Latitude" type="text" name="latitude" />
+                            <Field title="Latitude" type="text" name="latitude" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Longitude" type="text" name="longitude" />
+                            <Field title="Longitude" type="text" name="longitude" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Tipo de Cliente"
                                     options={tipoClient}
                                     keys={{value: "id", label: "descricao"}}
                                     type="select"
+                                    required
                                     name="tipo_pessoa_id" />
                         </div>
                         <Field title="clientId" type="hidden" name="clientId" />
@@ -140,8 +143,8 @@ const Client = (props) => {
     }
 
     const fetchCities = async () => {
-        // const _cities = await Api.Fretz.City.getAll();
-        // setCities(_cities);
+        const _cities = await Api.Fretz.City.getAll();
+        setCities(_cities);
     }
 
     const actions = [
