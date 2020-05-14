@@ -28,7 +28,7 @@ main {
 
 /*MATERIALIZE-CSS overrides*/
 
-.input-field > label,
+.input-field > label.field-description,
 .drag-target {
     pointer-events: none;
 }

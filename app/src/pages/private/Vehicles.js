@@ -1,4 +1,3 @@
-import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
 
 import { yup } from "components/form/customYup";
@@ -57,19 +56,19 @@ const VehiclesForm = ({updateData, vehicleTypes, formRef}) => {
                     <span className="card-title center-align">Cadastro de Veículos</span>
                     <div className="row">
                         <div className="col s12">
-                            <Field title="Descrição" type="text" name="descricao" />
+                            <Field title="Descrição" type="text" name="descricao" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Placa" type="text" name="placa" pattern="/^[A-Z]{3}[-][0-9][A-Z0-9][0-9]{2}$/" />
+                            <Field title="Placa" type="text" name="placa" pattern="/^[A-Z]{3}[-][0-9][A-Z0-9][0-9]{2}$/" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Km" type="text" name="km" />
+                            <Field title="Km" type="text" name="km" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Capacidade Peso" type="text" name="capacidade_peso" />
+                            <Field title="Capacidade Peso" type="text" name="capacidade_peso" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Tara" type="text" name="tara" />
+                            <Field title="Tara" type="text" name="tara" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Cor" type="text" name="cor" />
@@ -78,14 +77,14 @@ const VehiclesForm = ({updateData, vehicleTypes, formRef}) => {
                             <Field title="Capacidade Volume" type="text" name="capacidade_volume" />
                         </div>
                         <div className="col s4">
-                            <Field title="Compartimentos" type="text" name="compartimento" />
+                            <Field title="Compartimentos" type="text" name="compartimento" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Tipo de Veículo"
                                     options={vehicleTypes}
                                     keys={{value: "id", label: "descricao"}}
                                     type="select"
-                                    name="tipo_veiculo_id" />
+                                    name="tipo_veiculo_id" required/>
                         </div>
                         <Field title="vehicleId" type="hidden" name="vehicleId" />
                     </div>

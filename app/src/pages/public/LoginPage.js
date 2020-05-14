@@ -1,7 +1,8 @@
 import "pages/public/LoginPage.css"
-import React from "react";
-import Login from "components/Login";
 import logo from "imgs/logo.png";
+import React from "react";
+
+import Login from "components/Login";
 
 const LoginPage = (props) => {
     return (

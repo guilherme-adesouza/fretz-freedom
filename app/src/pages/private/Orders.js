@@ -1,4 +1,3 @@
-import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
 
 import { yup } from "components/form/customYup";
@@ -18,7 +17,7 @@ const OrderSchema = yup(yup => {
         situacao: yup.string().default('AT'),
         observacao: yup.string().default(''),
         rua: yup.string().required('Campo obrigatório!').default(''),
-        cep: yup.number().required('Campo obrigatório!').typeError('Informe um valor numérico!'),
+        cep: yup.string().required('Campo obrigatório!'),
         complemento: yup.string().default(''),
         numero: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         bairro: yup.string().required('Campo obrigatório!').default(''),
@@ -58,28 +57,28 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
                     <span className="card-title center-align">Cadastro de Pedidos</span>
                     <div className="row">
                         <div className="col s4">
-                            <Field title="Data Inicial" type="date" name="data_inicial" />
+                            <Field title="Data Inicial" type="date" name="data_inicial" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Data de Entrega" type="date" name="data_entrega" />
                         </div>
                         <div className="col s4">
-                            <Field title="Valor" type="text" name="valor" />
+                            <Field title="Valor" type="text" name="valor" required/>
                         </div>
                         <div className="col s12">
                             <Field title="Observação" type="text" name="observacao" />
                         </div>
                         <div className="col s6">
-                            <Field title="Rua" type="text" name="rua" />
+                            <Field title="Rua" type="text" name="rua" required/>
                         </div>
                         <div className="col s6">
-                            <Field title="Bairro" type="text" name="bairro" />
+                            <Field title="Bairro" type="text" name="bairro" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="CEP" type="text" name="cep" />
+                            <Field title="CEP" type="text" name="cep" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Número" type="text" name="numero" />
+                            <Field title="Número" type="text" name="numero" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Complemento" type="text" name="complemento" />
@@ -89,15 +88,15 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
                                     options={clients}
                                     keys={{value: "id", label: "nome"}}
                                     type="select"
-                                    name="pessoa_id" />
+                                    name="pessoa_id" required/>
                         </div>
-                        <div className="col s4">
+                        {/* <div className="col s4">
                             <Field title="Item"
                                     options={items}
                                     keys={{value: "id", label: "descricao"}}
                                     type="select multiple"
-                                    name="item_id" />
-                        </div>
+                                    name="item_id" required/>
+                        </div> */}
                         <Field title="orderId" type="hidden" name="orderId" />
                     </div>
             </Form>

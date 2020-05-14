@@ -1,0 +1,1 @@
+INSERT INTO grupo_item (descricao, situacao) VALUES ('Genérico', 'AT');

@@ -1,4 +1,3 @@
-import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
 
 import { yup } from "components/form/customYup";
@@ -49,7 +48,7 @@ const RegionForm = ({updateData, groupRegion, formRef}) => {
                     <span className="card-title center-align">Cadastro de Regiões</span>
                     <div className="row">
                         <div className="col s12">
-                            <Field title="Descrição" type="text" name="descricao" />
+                            <Field title="Descrição" type="text" name="descricao" required/>
                         </div>
                             <Field title="regionId" type="hidden" name="regionId" />
                     </div>

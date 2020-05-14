@@ -46,7 +46,7 @@ const ItemGroupsForm = ({updateData, formRef}) => {
                     <span className="card-title center-align">Cadastro de Grupos de Itens</span>
                     <div className="row">
                         <div className="col s12">
-                            <Field title="Descrição" type="text" name="descricao" />
+                            <Field title="Descrição" type="text" name="descricao" required/>
                         </div>
                         <Field title="itemGroupId" type="hidden" name="itemGroupId" />
                     </div>

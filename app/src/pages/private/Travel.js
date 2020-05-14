@@ -1,4 +1,3 @@
-import "components/commons/Breadcrumb.css";
 import React, { useState, useEffect } from "react";
 
 import { yup } from "components/form/customYup";
@@ -15,9 +14,9 @@ const ViagemSchema = yup(yup => {
         id: yup.number().default(0),
         situacao: yup.string().required().default('AT'),
         data_inicial: yup.date().required('Campo obrigatório').typeError('Data inválida!'),
-        data_final: yup.string().default(''),
-        vehicle_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
-        clients_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
+        data_final: yup.date(),
+        veiculo_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
+        motorista_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         despesa: yup.number().default(0).typeError('Informe um valor numérico!'),
     })
 });
@@ -27,11 +26,10 @@ const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
     const createViagem = async (values, actions) => {
         const isEdit = !!values.id && values.id !== 0;
         try {
-            values.quantidade = 0;
             if (isEdit) {
-                await Api.Fretz.Viagem.update(values.id, values);
+                await Api.Fretz.Travel.update(values.id, values);
             } else {
-                await Api.Fretz.Viagem.create(values);
+                await Api.Fretz.Travel.create(values);
             }
             actions.resetForm();
             updateData();
@@ -53,24 +51,25 @@ const ViagemForm = ({updateData, vehicles, clients, formRef}) => {
                 defaultActionButtons={true}>
                     <span className="card-title center-align">Cadastro de Viagem</span>
                     <div className="row">
-                        <div className="col s4">
-                            <Field title="Data Inicial" type="date" name="data_inicial" />
-                        </div>
-                        <div className="col s4">
+                        <div className="col s6">
                             <Field title="Motorista"
                                     options={clients}
-                                    keys={{value: "id", label: "descricao"}}
+                                    keys={{value: "id", label: "nome"}}
                                     type="select"
-                                    name="clients_id" />
+                                    name="motorista_id" required/>
                         </div>
-                        <div className="col s4">
+                        <div className="col s6">
                             <Field title="Veículo"
                                     options={vehicles}
                                     keys={{value: "id", label: "descricao"}}
                                     type="select"
-                                    name="vehicles_id" />
+                                    name="veiculo_id" required/>
                         </div>
-                        <div className="col s4">
+
+                        <div className="col s6">
+                            <Field title="Data Inicial" type="date" name="data_inicial" required/>
+                        </div>
+                        <div className="col s6">
                             <Field title="Despesa" placeholder="R$ " type="number" name="despesa" />
                         </div>                        
                         <Field title="viagemId" type="hidden" name="viagemId" />
@@ -93,13 +92,13 @@ const Travel = (props) => {
     };
 
     const fetchViagem = async () => {
-        //const _viagem = await Api.Fretz.Viagem.getAll();
-        //setViagem(_viagem);
+        const _viagem = await Api.Fretz.Travel.getAll();
+        setViagem(_viagem);
     };
 
     const fetchClients = async () => {
-        //const _clients = await Api.Fretz.Clients.getAll();
-        //setClients(_clients);
+        const _clients = await Api.Fretz.Person.getAll();
+        setClients(_clients);
     }
 
     const actions = [
@@ -134,9 +133,9 @@ const Travel = (props) => {
         <React.Fragment>
             <div>
                 <ViagemForm updateData={fetchViagem} 
-                           vehicles={vehicles}
-                           clients={clients}
-                           formRef={formRef}/>
+                            vehicles={vehicles}
+                            clients={clients}
+                            formRef={formRef}/>
             </div>
             <div>
                 <TableCRUD data={viagem} actions={actions}/>
