@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
 
 import Api from "service/Api";
+import Storage from "service/Storage";
 import Form from "components/form/Form";
 import {yup} from "components/form/customYup";
 import Field from "components/form/Field";
@@ -24,8 +25,10 @@ const Login = ({
     const attemptLogin = async (values, actions) => {
         try {
             const user = await Api.Fretz.User.login(values);
+            Storage.setUser(user);
             setRedirectToReferrer(true);
         } catch (e) {
+            Storage.resetUser();
             actions.setSubmitting(false);
             UiMsg.error({message: "Usuário ou senha incorreto(s)!"})
         }

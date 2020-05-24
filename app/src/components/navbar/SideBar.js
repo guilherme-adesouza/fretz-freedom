@@ -1,4 +1,4 @@
-import "components/SideBar.css";
+import "components/navbar/SideBar.css";
 import React, {useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import M from "materialize-css";
@@ -39,7 +39,6 @@ const OPERATION_SIDE_LINKS = {
         "ORDER": {
             label: "Pedidos",
             link: "/order"
-
         },
         "TRAVEL": {
             label: "Viagens",
@@ -58,10 +57,22 @@ const PARAMETERS_SIDE_LINKS = {
     }
 };
 
+const ADMIN_SIDE_LINKS = {
+    description: "Administrador",
+    links: {
+        "CREATE_USERS": {
+            label: "Criar Usuários",
+            link: "/admin/user/create"
+        }
+    },
+};
+
+
 const SIDE_LINKS = [
     OPERATION_SIDE_LINKS,
     CRUD_SIDE_LINKS,
-    PARAMETERS_SIDE_LINKS
+    PARAMETERS_SIDE_LINKS,
+    ADMIN_SIDE_LINKS
 ];
 
 const SideBar = (props) => {
@@ -92,13 +103,9 @@ const SideBar = (props) => {
             <ul id="slide-out" className="sidenav" ref={sidenav}>
                 <li className="user-view">
                     <div className="flex-center-btw">
+                         <div className="background theme-bgc"/>
                         <img src={logo} alt="logo" width="40%"/>
                         <span>FRETZ & FREEDOM</span>
-                    </div>
-                    <div>
-                        <div className="background theme-bgc"/>
-                        <span className="white-text name">John Doe</span>
-                        <span className="white-text email">jdandturk@gmail.com</span>
                     </div>
                 </li>
                 {SIDE_LINKS.map((sideNav, idx) => {

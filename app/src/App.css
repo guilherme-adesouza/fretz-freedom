@@ -26,6 +26,15 @@ main {
     justify-content: space-between;
 }
 
+.hover-transition {
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.hover-transition:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
 /*MATERIALIZE-CSS overrides*/
 
 .input-field > label.field-description,
@@ -39,6 +48,10 @@ main {
 
 select {
     display: block;
+}
+
+.sidenav .user-view {
+    padding-bottom: 32px;
 }
 
 /*THEME CSS*/
