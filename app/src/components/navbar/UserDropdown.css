@@ -1,0 +1,12 @@
+.main-nav img {
+    height: 44px;
+    margin: 10px;
+}
+
+.UserDropdown {
+    padding: 0 10px;
+}
+
+#user-dropdown {
+    top: 66px !important;
+}
