@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import * as M from "materialize-css";
+import React, { useRef } from 'react';
 
 function buildLabel({label, option, joiner = ' - '}){
     if(typeof label === 'object') {

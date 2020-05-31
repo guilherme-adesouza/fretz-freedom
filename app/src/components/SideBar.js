@@ -68,9 +68,10 @@ const SideBar = (props) => {
     const sidenav = useRef(null);
 
     useEffect(() => {
-        M.Sidenav.init(sidenav.current);
+        const ref = sidenav.current;
+        M.Sidenav.init(ref);
         return () => {
-            M.Sidenav.getInstance(sidenav.current).destroy();
+            M.Sidenav.getInstance(ref).destroy();
         }
     }, []);
 

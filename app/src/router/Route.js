@@ -4,7 +4,6 @@ import {
     Redirect,
 } from "react-router-dom";
 
-//import LoadingPage from '../pages/public/Loading';
 import Api from 'service/Api';
 import BasicPage from "pages/BasicPage";
 
@@ -20,13 +19,14 @@ export const PrivateComponent = ({
         const doAuthenticate = async () => {
             try {
                 const {user} = await Api.Fretz.User.verifyAuth();
-                let isAuthenticated = !!user && adminRoute ? user.admin : true;
+                const isAuthenticated = !!user && adminRoute ? user.admin : true;
                 setState({
                     loading: false,
                     isLogged: !!user,
                     isAuthenticated,
                 });
             } catch (e) {
+                console.log(e);
                 alert(e);
                 setState({loading: false});
             }
@@ -40,7 +40,7 @@ export const PrivateComponent = ({
         return (
             <React.Fragment>
                 {!state.isAuthenticated ?
-                    <Redirect to={{pathname: '/'}}/> :
+                    <Redirect to={{pathname: '/login'}}/> :
                     <BasicPage {...props}>
                         <Component {...props} />
                     </BasicPage>
