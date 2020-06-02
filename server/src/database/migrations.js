@@ -3,10 +3,10 @@ const DBMigrate = require('db-migrate');
 
 const dbConfig = {
 	dev: {
-		user: DATABASE.USER,
+		user: DATABASE.MASTER_USER,
 		host: DATABASE.HOST,
 		database: DATABASE.NAME,
-		password: DATABASE.PASSWORD,
+		password: DATABASE.MASTER_PASSWORD,
 		port: DATABASE.PORT,
 		driver: 'pg'
 	}
