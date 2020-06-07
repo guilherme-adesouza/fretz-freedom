@@ -20,7 +20,7 @@ export const request = axios.create({
 });
 
 class FretzAPI {
-    static User = UserAPI;
+    static User = new UserAPI();
     static Item = new ItemAPI();
     static GroupItem = new GroupItemAPI();
     static Region = new RegionAPI();

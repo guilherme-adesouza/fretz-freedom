@@ -24,6 +24,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
 }
 
 .hover-transition {
@@ -51,7 +52,7 @@ select {
 }
 
 .sidenav .user-view {
-    padding-bottom: 32px;
+    padding: 32px 18px;
 }
 
 /*THEME CSS*/

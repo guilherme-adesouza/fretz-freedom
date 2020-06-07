@@ -1,23 +1,24 @@
 import {request} from "service/fretz/FretzAPI";
+import BaseServiceCRUD from "service/fretz/BaseServiceCRUD";
 
-class UserAPI {
-    static verifyAuth = async () => {
+class UserAPI extends BaseServiceCRUD {
+
+    constructor() {
+        super('/user')
+    }
+
+    verifyAuth = async () => {
         const {data} = await request.get('/auth/verify');
         return data;
     };
 
-    static login = async (credentials) => {
+    login = async (credentials) => {
         const {data} = await request.post('/auth/login', credentials);
         return data;
     };
 
-    static logout = async () => {
+    logout = async () => {
         await request.get('/auth/logout');
-    };
-
-    static create = async (values) => {
-        const {data} = await request.post('/user', values);
-        return data;
     };
 }
 

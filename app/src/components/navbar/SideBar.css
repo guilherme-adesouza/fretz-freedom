@@ -1,3 +1,7 @@
 nav .brand-logo {
     position: relative;
 }
+
+.main-nav .user-view img {
+    height: 100%;
+}
