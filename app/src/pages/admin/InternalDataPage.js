@@ -46,10 +46,14 @@ const InternalDataPage = () => {
     return (
         <div className="valign-wrapper row">
             <div className="col s6">
-                <Bar id="internal-bar-data-user" data={createChartData()} />
+                <div className="card">
+                    <Bar id="internal-bar-data-user" data={createChartData()} />
+                </div>
             </div>
             <div className="col s6" style={{textAlign: 'center'}}>
-                Novos gráficos em breve
+                <div>
+                    Novos gráficos em breve
+                </div>
             </div>
         </div>
     )
