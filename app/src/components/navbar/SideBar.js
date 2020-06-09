@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import M from "materialize-css";
 
+import Storage from "service/Storage";
 import Icon from "components/commons/Icon";
 import logo from "imgs/logo.png";
 
@@ -53,7 +54,7 @@ const PARAMETERS_SIDE_LINKS = {
         "ESTABLISHMENT": {
             label: "Estabelecimento",
             link: "/establishment"
-        }
+        },
     }
 };
 
@@ -63,16 +64,20 @@ const ADMIN_SIDE_LINKS = {
         "CREATE_USERS": {
             label: "Criar Usuários",
             link: "/admin/user/create"
-        }
+        },
+        "INTERNAL_DATA": {
+            label: "Dados da aplicação",
+            link: "/admin/data"
+        },
     },
 };
 
 
 const SIDE_LINKS = [
-    OPERATION_SIDE_LINKS,
-    CRUD_SIDE_LINKS,
-    PARAMETERS_SIDE_LINKS,
-    ADMIN_SIDE_LINKS
+    {links: OPERATION_SIDE_LINKS},
+    {links: CRUD_SIDE_LINKS},
+    {links: PARAMETERS_SIDE_LINKS},
+    {links: ADMIN_SIDE_LINKS, admin: true}
 ];
 
 const SideBar = (props) => {
@@ -109,7 +114,9 @@ const SideBar = (props) => {
                         <span>FRETZ & FREEDOM</span>
                     </div>
                 </li>
-                {SIDE_LINKS.map((sideNav, idx) => {
+                {SIDE_LINKS.map((sl, idx) => {
+                    if (sl.admin && !Storage.getUser().admin) return null;
+                    const sideNav = sl.links;
                     return (
                         <div key={idx}>
                             {idx !== 0 && <li><div className="divider"/></li>}

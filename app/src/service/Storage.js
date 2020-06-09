@@ -9,7 +9,6 @@ class Storage {
 
     static getUser() {
         const user = localStorage.getItem('fretz.user');
-        console.log(user);
         return user != null ? JSON.parse(user).user : null;
     }
 }
