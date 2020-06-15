@@ -8,6 +8,7 @@ import Client from 'pages/private/Clients';
 import Order from 'pages/private/Orders';
 import Travel from 'pages/private/Travel';
 import Establishment from 'pages/private/Establishment';
+import ConfigSession from 'pages/private/ConfigSession';
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/establishment',
         breadcrumbTitle: 'Estabelecimento',
         component: Establishment
+    },
+    {
+        path: '/session',
+        breadcrumbTitle: 'Configuração de Sessão',
+        component: ConfigSession
     }
 ];
 

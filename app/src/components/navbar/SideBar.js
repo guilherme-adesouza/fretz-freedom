@@ -37,6 +37,10 @@ const CRUD_SIDE_LINKS = {
 const OPERATION_SIDE_LINKS = {
     description: "Operação",
     links: {
+        "SESSION": {
+            label: "Configurar Sessão",
+            link: "/session"
+        },
         "ORDER": {
             label: "Pedidos",
             link: "/order"
