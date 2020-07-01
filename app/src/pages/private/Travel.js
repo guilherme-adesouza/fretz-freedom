@@ -111,9 +111,9 @@ const Travel = (props) => {
             description: "Excluir", 
             icon: "delete_outline",
             onClick: (props) => {
-                ModalConfirm(`Você deseja excluir a viagem ${props.descricao}?`, async () => {
+                ModalConfirm(`Você deseja excluir a viagem ${props.id}?`, async () => {
                     try {
-                        await Api.Fretz.Viagem.delete(props.id);
+                        await Api.Fretz.Travel.delete(props.id);
                         await fetchViagem();
                     } catch (e) {
                         UiMsg.error({message: 'Ocorreu um erro ao tentar excluir a viagem'});

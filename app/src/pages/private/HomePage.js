@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Icon from "components/commons/Icon";
 
+
 const HomePage = (props) => {
 
     const item = (link, name, icon) => {

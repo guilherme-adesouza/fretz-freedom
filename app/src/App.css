@@ -58,6 +58,10 @@ select {
     display: block;
 }
 
+.sidenav {
+    z-index: 1001;
+}
+
 .sidenav .user-view {
     padding: 32px 18px;
 }

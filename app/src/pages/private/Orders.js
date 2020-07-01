@@ -6,8 +6,10 @@ import Field from "components/form/Field";
 import UiMsg from "components/commons/UiMsg";
 import { TableCRUD } from "components/commons/Table";
 import { ModalConfirm } from "components/commons/Modal";
+import Button from "components/commons/Button";
 
 import Api from "service/Api";
+import { useForceUpdate } from "utils/reactUtils";
 
 const OrderSchema = yup(yup => {
     return yup.object().shape({
@@ -22,13 +24,21 @@ const OrderSchema = yup(yup => {
         numero: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         bairro: yup.string().required('Campo obrigatório!').default(''),
         pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
-        data_entrega: yup.date().default(() => (new Date()))
+        data_entrega: yup.date().default(() => (new Date())), 
+        item_id: yup.number(), //temp
+        quantidade: yup.number().positive(), //temp
+        items: yup.array().of(yup.object().shape({
+            item_id: yup.number(),
+            quantidade: yup.number().positive(),
+        }))
+
     })
 });
 
 const OrdersForm = ({updateData, clients, items, formRef}) => {
+    const forceUpdate = useForceUpdate();
 
-    const createOrder = async (values, actions) => {
+    const createOrder = async ({item_id, quantidade, ...values}, actions) => {
         const isEdit = !!values.id && values.id !== 0;
         try {
             if (isEdit) {
@@ -45,6 +55,20 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
         }
     };
 
+    const addItem = async (event) => {
+        const {values, setFieldValue} = formRef.current;
+        if (!values.item_id || !values.quantidade) return;
+        const items = values.items || [];
+        if (items.some(i => i.item_id === values.item_id)) return;
+        await setFieldValue('items', items.concat(
+            {
+                item_id: values.item_id,
+                quantidade: values.quantidade,
+            }
+        ))
+        forceUpdate();
+    };
+
     return (
         <div className="valign-wrapper row">
             <Form
@@ -57,16 +81,20 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
                     <span className="card-title center-align">Cadastro de Pedidos</span>
                     <div className="row">
                         <div className="col s4">
+                            <Field title="Cliente"
+                                    options={clients}
+                                    keys={{value: "id", label: "nome"}}
+                                    type="select"
+                                    name="pessoa_id" required/>
+                        </div>
+                        <div className="col s3">
                             <Field title="Data Inicial" type="date" name="data_inicial" required/>
                         </div>
-                        <div className="col s4">
+                        <div className="col s3">
                             <Field title="Data de Entrega" type="date" name="data_entrega" />
                         </div>
-                        <div className="col s4">
-                            <Field title="Valor" type="text" name="valor" required/>
-                        </div>
-                        <div className="col s12">
-                            <Field title="Observação" type="text" name="observacao" />
+                        <div className="col s2">
+                            <Field title="Valor" type="number" name="valor" />
                         </div>
                         <div className="col s6">
                             <Field title="Rua" type="text" name="rua" required/>
@@ -83,20 +111,33 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
                         <div className="col s4">
                             <Field title="Complemento" type="text" name="complemento" />
                         </div>
-                        <div className="col s4">
-                            <Field title="Cliente"
-                                    options={clients}
-                                    keys={{value: "id", label: "nome"}}
-                                    type="select"
-                                    name="pessoa_id" required/>
+
+                        <div className="col s12">
+                            <Field title="Observação" type="text" name="observacao" />
                         </div>
-                        {/* <div className="col s4">
+                        <hr className="col s12" style={{margin: '30px 0'}}/>
+                        <div className="col s8">
                             <Field title="Item"
                                     options={items}
                                     keys={{value: "id", label: "descricao"}}
-                                    type="select multiple"
-                                    name="item_id" required/>
-                        </div> */}
+                                    type="select"
+                                    name="item_id"/>
+                        </div>
+                        <div className="col s2">
+                            <Field title="Quantidade"
+                                   type="number"
+                                   name="quantidade"/>
+                        </div>
+                        <div className="col s2">
+                            <Button type="button" onClick={addItem}>
+                                Adicionar
+                            </Button>
+                        </div>
+                        {!!formRef.current &&
+                        <div className="col s12">
+                            <TableCRUD data={formRef.current.values.items} />
+                        </div>
+                        }
                         <Field title="orderId" type="hidden" name="orderId" />
                     </div>
             </Form>

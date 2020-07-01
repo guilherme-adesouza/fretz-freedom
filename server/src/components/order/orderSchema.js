@@ -14,6 +14,7 @@ const orderSchema = yup.object().shape({
 	pessoa_id: yup.number(),
 	categoria_pedido_id: yup.number(),
 	data_entrega: yup.date().nullable(),
+	viagem_id: yup.date().nullable(),
 });
 
 module.exports = orderSchema;
