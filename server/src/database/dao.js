@@ -103,4 +103,7 @@ function getUpdateValues(params) {
 	return values.join(', ');
 }
 
-module.exports = DAO;
+module.exports = {
+	getInsertValues,
+	DAO
+};

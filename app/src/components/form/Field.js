@@ -6,6 +6,7 @@ import TextField from 'components/form/TextField';
 import SelectField from 'components/form/SelectField';
 import MultiSelect from 'components/form/MultiSelect';
 import CheckboxField from 'components/form/CheckboxField';
+import TimePickerField from 'components/form/TimePickerField';
 
 const COMPONENTS = {
     "text": TextField,
@@ -13,7 +14,8 @@ const COMPONENTS = {
     "textarea": TextField,
     "password": TextField,
     "select": SelectField,
-    "select multiple": MultiSelect
+    "select multiple": MultiSelect,
+    "date": TimePickerField,
 };
 
 const InputWrapper = ({

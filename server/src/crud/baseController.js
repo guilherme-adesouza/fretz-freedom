@@ -19,7 +19,7 @@ class BaseController {
 	async getById(req, res, next) {
 		const id = req.params.id;
 
-		if(Validator.idRequest(id, next)) {
+		if (Validator.idRequest(id, next)) {
 			const data = await this.service.getById(Number(id));
 
 			if (!data) {

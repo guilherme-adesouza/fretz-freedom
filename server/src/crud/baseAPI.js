@@ -3,7 +3,7 @@ const {loggedIn} = require('../middlewares/authentication');
 
 function buildBaseAPI(controller, router) {
 	if (!router) {
-		router = express.Router();
+		router = express.Router({mergeParams: true});
 	}
 	router.use(loggedIn);
 

@@ -13,7 +13,7 @@ const VehicleSchema = yup(yup => {
     return yup.object().shape({
         id: yup.number().default(0),
         descricao: yup.string().required('Campo obrigatório').default(''),
-        placa: yup.string().required('Campo obrigatório!').matches(/^[A-Z]{3}[-][0-9][A-Z0-9][0-9]{2}$/, 'Formato de placa inválido!').default(''),
+        placa: yup.string().required('Campo obrigatório!').default(''),
         km: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         capacidade_peso: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
         tara: yup.number().required('Campo obrigatório!').default(0).typeError('Informe um valor numérico!'),
@@ -59,7 +59,7 @@ const VehiclesForm = ({updateData, vehicleTypes, formRef}) => {
                             <Field title="Descrição" type="text" name="descricao" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Placa" type="text" name="placa" pattern="/^[A-Z]{3}[-][0-9][A-Z0-9][0-9]{2}$/" required/>
+                            <Field title="Placa" type="text" name="placa" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Km" type="text" name="km" required/>
