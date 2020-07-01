@@ -1,4 +1,4 @@
-const dao = require('../../database/dao');
+const dao = require('../../database/dao').DAO;
 const BasicDAO = require('../../crud/basicDAO');
 
 class TokenDAO extends BasicDAO {

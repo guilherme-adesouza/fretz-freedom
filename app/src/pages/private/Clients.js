@@ -17,7 +17,7 @@ const ClientSchema = yup(yup => {
         cpf_cnpj: yup.number().required('Campo obrigatório').default('').typeError('Informe somente números!'),
         data_nascimento: yup.date().required('Campo obrigatório').default(() => (new Date())).typeError('Data inválida!'),
         cnh: yup.string().default(''),
-        telefone: yup.number().required('Campo obrigatório!').default('').typeError('Informe um valor numérico!'),
+        telefone: yup.string().required('Campo obrigatório!').default(''),
         situacao: yup.string().required().default('AT'),
         email: yup.string().default(''),
         rua: yup.string().required('Campo obrigatório!').default(''),
@@ -35,7 +35,6 @@ const ClientSchema = yup(yup => {
 const ClientForm = ({updateData, tipoClient, cities, formRef}) => {
 
     const createClient = async (values, actions) => {
-        console.log('createClient');
         const isEdit = !!values.id && values.id !== 0;
         try {
             if (isEdit) {

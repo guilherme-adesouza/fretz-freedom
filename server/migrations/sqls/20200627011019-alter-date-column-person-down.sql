@@ -1,0 +1,1 @@
+ALTER TABLE pessoa DROP COLUMN data_nascimento;

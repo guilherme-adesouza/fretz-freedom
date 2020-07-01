@@ -17,7 +17,7 @@ const TextField = ({
         );
     }
     return (
-        <input className={`validate ${className}`} type={type} {...field} />
+        <input className={`validate ${className}`} type={type} {...field} {...props}/>
     );
 };
 

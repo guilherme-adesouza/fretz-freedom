@@ -1,4 +1,5 @@
 import React from "react";
+import PlotMap from "components/map/PlotMap";
 
 const HomePage = (props) => {
     return (

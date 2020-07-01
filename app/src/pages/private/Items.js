@@ -73,7 +73,7 @@ const ItemsForm = ({updateData, groupItems, formRef}) => {
                             <Field title="Valor de Venda" placeholder="R$ " type="text" name="valor_venda" required/>
                         </div>
                         <div className="col s4">
-                            <Field title="Volume" type="text" name="volume" required/>
+                            <Field title="Volume por KG (L)" type="text" name="volume" required/>
                         </div>
                         <div className="col s4">
                             <Field title="Peso" type="text" name="peso" required/>
