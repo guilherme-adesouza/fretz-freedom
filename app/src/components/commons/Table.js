@@ -15,7 +15,7 @@ const Table = ({
     const _header = header || (!!data && data.length > 0) ? Object.keys(data[0]) : [];
 
     return (
-        <table>
+        <table className="striped">
             <thead>
                 <tr>
                     {_header.map((column, idx) => {

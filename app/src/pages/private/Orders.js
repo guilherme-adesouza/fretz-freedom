@@ -25,7 +25,8 @@ const OrderSchema = yup(yup => {
         bairro: yup.string().required('Campo obrigatório!').default(''),
         pessoa_id: yup.number().required('Campo obrigatório!').default(0).typeError('Selecione uma opção!'),
         data_entrega: yup.date().default(() => (new Date())), 
-        item_id: yup.number(), //temp
+        item_id: yup.number().default(0), //temp
+        viagem_id: yup.number(), //temp
         quantidade: yup.number().positive(), //temp
         items: yup.array().of(yup.object().shape({
             item_id: yup.number(),
@@ -35,7 +36,7 @@ const OrderSchema = yup(yup => {
     })
 });
 
-const OrdersForm = ({updateData, clients, items, formRef}) => {
+const OrdersForm = ({updateData, clients, items, formRef, travels}) => {
     const forceUpdate = useForceUpdate();
 
     const createOrder = async ({item_id, quantidade, ...values}, actions) => {
@@ -111,8 +112,15 @@ const OrdersForm = ({updateData, clients, items, formRef}) => {
                         <div className="col s4">
                             <Field title="Complemento" type="text" name="complemento" />
                         </div>
-
-                        <div className="col s12">
+                        <div className="col s4">
+                            <Field  title="Viagem"
+                                    options={travels}
+                                    keys={{value: "id", label: "id"}}
+                                    type="select"
+                                    innerStyle={{width: '100%'}}
+                                    name="viagem_id"/>
+                        </div>
+                        <div className="col s8">
                             <Field title="Observação" type="text" name="observacao" />
                         </div>
                         <hr className="col s12" style={{margin: '30px 0'}}/>
@@ -151,6 +159,12 @@ const Orders = (props) => {
     const [orders, setOrders] = useState([]);
     const [items, setItems] = useState([]);
     const [clients, setClients] = useState([]);
+    const [travels, setTravels] = useState([]);
+   
+    const fetchTravels = async () => {
+        const _travels = await Api.Fretz.Travel.getAll();
+        setTravels(_travels);
+    }
 
     const fetchItems = async () => {
         const _items = await Api.Fretz.Item.getAll();
@@ -193,6 +207,7 @@ const Orders = (props) => {
         fetchOrders();
         fetchItems();
         fetchClients();
+        fetchTravels();
     }, []);
 
     return (
@@ -201,6 +216,7 @@ const Orders = (props) => {
                 <OrdersForm updateData={fetchOrders} 
                            items={items}
                            clients={clients}
+                           travels={travels}
                            formRef={formRef}/>
             </div>
             <div>

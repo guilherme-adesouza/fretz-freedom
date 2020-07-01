@@ -46,10 +46,11 @@ const MyField = ({
                      type = 'text',
                      title = null,
                      required = false,
+                     innerStyle = {},
                      ...props
                  }) => {
     return (
-        <div className={`Field ${className}`}>
+        <div className={`Field ${className}`} style={innerStyle}>
             <Field {...props}
                    title={title}
                    required={required}

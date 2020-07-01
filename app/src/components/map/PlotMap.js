@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 const accessToken = "pk.eyJ1IjoiZ3VpbGhlcm1lYWRlc291emEiLCJhIjoiY2tjMTRuOGs5MDBweDJ1b2R0bGl6MW0wdiJ9.HJq0ygVYNK_HyId1SP9Vzg";
 
 const PlotMap = ({
+                    style = {height: "700px", border: '1px solid #ccc'},
                     points = [], 
                     ...props
                 }) => {
@@ -29,13 +30,13 @@ const PlotMap = ({
 
     useEffect(() => {
         if (map == null) return;
-        for (let point of [[-29.4682059, -51.9643788], [-29.5011966, -51.9639667]]) {
+        for (let point of points) {
             L.marker(point).addTo(map);
         }
     }, [points]);
 
     return (
-        <div id="map-component" style={{height: "700px", width: "700px"}}></div>
+        <div id="map-component" style={style}></div>
     )
 }
 

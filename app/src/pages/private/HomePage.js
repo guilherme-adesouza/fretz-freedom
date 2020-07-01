@@ -16,7 +16,7 @@ const HomePage = (props) => {
         )
     }
     return (
-        <div className="row" style={{height: "100%"}}>
+        <div className="container row" style={{height: "100%"}}>
             {item('/order', 'PEDIDOS', 'assignment')}
             {item('/travel', 'VIAGEMS', 'hourglass_top')}
             {item('/client', 'CLIENTES', 'face')}

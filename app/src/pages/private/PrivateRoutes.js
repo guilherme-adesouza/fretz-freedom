@@ -9,6 +9,7 @@ import Order from 'pages/private/Orders';
 import Travel from 'pages/private/Travel';
 import Establishment from 'pages/private/Establishment';
 import ConfigSession from 'pages/private/ConfigSession';
+import TravelMap from 'pages/private/TravelMap';
 
 const routes = [
     {
@@ -60,7 +61,12 @@ const routes = [
         path: '/session',
         breadcrumbTitle: 'Configuração de Sessão',
         component: ConfigSession
-    }
+    },
+    {
+        path: '/map',
+        breadcrumbTitle: 'Mapa da viagem',
+        component: TravelMap
+    },
 ];
 
 export default {component: PrivateRoute, routes};

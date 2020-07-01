@@ -43,6 +43,10 @@ main {
     background-color: rgba(0,0,0,0.05);
 }
 
+table {
+    border: 1px solid #ccc;
+}
+
 /*MATERIALIZE-CSS overrides*/
 
 .input-field > label.field-description,
@@ -64,6 +68,10 @@ select {
 
 .sidenav .user-view {
     padding: 32px 18px;
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: #7b7b7b1f;
 }
 
 /*THEME CSS*/

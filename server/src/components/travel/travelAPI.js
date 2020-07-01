@@ -11,5 +11,8 @@ router.post('/:id/add-order', (req, res, next) => {
     controller.addOrders(req, res, next);
 });
 
+router.post('/:id/points', (req, res, next) => {
+    controller.getPoints(req, res, next);
+});
 
 module.exports = router;

@@ -26,6 +26,10 @@ class BasicDAO {
 		return dao.selectMany({table: this.table, ...params});
 	}
 
+	custom(sql, values) {
+		return dao.custom({sql, values});
+	}
+
 }
 
 module.exports = BasicDAO;

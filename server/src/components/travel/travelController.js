@@ -28,6 +28,17 @@ class TravelController extends BasicController {
 		}
 	} 
 
+	async getPoints(req, res, next) {
+		const id = req.params.id;
+
+		if (Validator.idRequest(id, next)) {
+			const list = await this.service.getPoints(id);
+			if (Validator.queryResult(list, next)) {
+				res.status(200).send(list);	
+			}
+		}
+	} 
+
 	isValidObject(obj) {
 		return super.isValidSchema(TravelSchema, obj);
 	}
