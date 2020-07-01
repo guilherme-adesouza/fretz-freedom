@@ -7,7 +7,7 @@ const Icon = ({
                   ...props
               }) => {
     return (
-        <i className={`material-icons ${size} ${className}`}>{icon}</i>
+        <i className={`material-icons ${size} ${className}`} {...props}>{icon}</i>
     )
 };
 

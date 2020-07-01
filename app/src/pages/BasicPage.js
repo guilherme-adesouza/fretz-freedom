@@ -14,7 +14,7 @@ const BasicPage = (props) => {
                 {props.children}
             </main>
             <footer>
-                <Footer />
+                {/* <Footer /> */}
             </footer>
         </div>
     )

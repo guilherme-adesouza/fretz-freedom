@@ -119,7 +119,8 @@ const SideBar = (props) => {
                     </div>
                 </li>
                 {SIDE_LINKS.map((sl, idx) => {
-                    if (sl.admin && !Storage.getUser().admin) return null;
+                    const user = Storage.getUser();
+                    if (sl.admin && (!user || !user.admin)) return null;
                     const sideNav = sl.links;
                     return (
                         <div key={idx}>
